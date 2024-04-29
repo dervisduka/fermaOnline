@@ -32,7 +32,7 @@ CREATE TABLE `perdorues` (
   `emer` varchar(255) NOT NULL,
   `mbiemer` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `is_admin` bool NOT NULL,
+  `is_admin` bit NOT NULL,
   `numer_kontakti` varchar(255) NOT NULL,
   `balanca` decimal(5,2) DEFAULT NULL,
   `adresa` varchar(255) NOT NULL,
