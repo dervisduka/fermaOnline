@@ -31,6 +31,7 @@ CREATE TABLE `produkt` (
   `pershkrim_produkti` varchar(500) NOT NULL,
     `updated_at` date DEFAULT NULL,
   `created_at` date NOT NULL,
+  `is_active` bit NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_lloji_produkt` (`lloji_id`),
   CONSTRAINT `fk_lloji_produkt` FOREIGN KEY (`lloji_id`) REFERENCES `llojprodukti` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
