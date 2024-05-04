@@ -16,6 +16,7 @@ class ProfileController extends Controller
             'guid_id' => $guid_id,
             'username' => $user->username,
             'email' => $user->email,
+            'is_admin' => $user->is_admin,
         ];
         return view('profile', ['data' => $data]);
     }

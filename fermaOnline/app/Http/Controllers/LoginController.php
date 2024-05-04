@@ -22,7 +22,9 @@ class LoginController extends Controller
         if(Auth::attempt($credentials)){
             $user = Auth::user();
             session(['guid_id' => $user->guid_id]);
-            return redirect()->intended(route('profile', ['guid_id' => Session::get('guid_id')]));
-        }else return redirect()->route('login');
+            return redirect()->intended(route('mainPage', ['guid_id' => Session::get('guid_id')]));
+        }else {
+            return redirect()->route('login');
+        }
     }
 }
