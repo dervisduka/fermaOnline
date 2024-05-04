@@ -6,7 +6,9 @@ use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Perdorues;
+use App\Mail\WelcomeEmail;
 
 class SignUpController extends Controller
 {
@@ -49,6 +51,9 @@ class SignUpController extends Controller
         if(!$user){
             return redirect()->route('signup');
         }
-        else return redirect()->route('login');
+        else {
+            Mail::to($request->email)->send(new WelcomeEmail());
+        }
+        return redirect()->route('login');
     }
 }
