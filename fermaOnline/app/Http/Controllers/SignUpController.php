@@ -52,7 +52,7 @@ class SignUpController extends Controller
             return redirect()->route('signup');
         }
         else {
-            Mail::to($request->email)->send(new WelcomeEmail());
+            // Mail::to($request->email)->send(new WelcomeEmail());
         }
         return redirect()->route('login');
     }
