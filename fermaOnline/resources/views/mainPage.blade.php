@@ -124,7 +124,7 @@
                         <i class="fas fa-user"></i> Profile
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-address-card"></i> My Data</a></li>
+                        <li><a class="dropdown-item" href="{{ route('profile', ['guid_id' => $data['guid_id']]) }}"><i class="fas fa-address-card"></i> My Data</a></li>
                         <li><a class="dropdown-item" href="#"><i class="fas fa-chart-line"></i> My Transactions</a></li>
                         <li><a class="dropdown-item" href="#"><i class="fas fa-wallet"></i> Add Funds</a></li>
                         <li><a class="dropdown-item" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
