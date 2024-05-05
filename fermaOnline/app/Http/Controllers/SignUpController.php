@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Perdorues;
 use App\Mail\WelcomeEmail;
+use Illuminate\Support\Facades\Validator;
 
 class SignUpController extends Controller
 {
@@ -24,8 +25,8 @@ class SignUpController extends Controller
     }
 
     public function signupPost(Request $request){
-        $request->validate([
-            'username' => 'required',
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|unique:perdorues',
             'email' => 'required|email|unique:perdorues',
             'password' => 'required',
             'name' => 'required',
@@ -34,7 +35,20 @@ class SignUpController extends Controller
             'address' => 'required',
             'dob' => 'required',
         ]);
-        
+
+        $isEmpty = false;
+        foreach ($request->all() as $key => $value) {
+            if (empty($value)) {
+                $isEmpty = true;
+                break;
+            }
+        }
+
+        if($validator->fails()){
+            if($isEmpty) $validator->errors()->add('required', 'All fiends are required');
+            return redirect()->route('signup')->withErrors($validator)->withInput();
+        }
+
         $data['guid_id'] = $this->generateGUID();
         $data['username'] = $request->username;
         $data['password'] = Hash::make($request->password);
@@ -48,12 +62,9 @@ class SignUpController extends Controller
         $data['data_e_lindjes'] = $request->dob;
 
         $user = Perdorues::create($data);
-        if(!$user){
-            return redirect()->route('signup');
-        }
-        else {
-            // Mail::to($request->email)->send(new WelcomeEmail());
-        }
-        return redirect()->route('login');
+
+        // Mail::to($request->email)->send(new WelcomeEmail());
+        
+        return redirect()->route('login')->with('success', 'Account created successfully');
     }
 }
