@@ -81,21 +81,69 @@
             text-align: center;
             margin-top: 10px;
         }
+        .alert {
+            position: fixed;
+            bottom: 20px; /* Adjust as needed */
+            right: 20px;
+            z-index: 1000; /* Ensure it's above other content */
+            padding: 15px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            animation: slideIn 0.5s forwards, fadeOut 1s 3s forwards; /* Slide in and fade out animations */
+        }
+
+        .alert-danger {
+            background-color: #f2dede;
+            border-color: #ebccd1;
+            color: #a94442;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
+    @if($errors->has('required'))
+        <div class="alert alert-danger">
+            {{ $errors->first('required') }}
+        </div>
+    @elseif ($errors->has('username'))
+        <div class="alert alert-danger">
+            {{ $errors->first('username') }}
+        </div>
+    @elseif ($errors->has('email'))
+        <div class="alert alert-danger">
+            {{ $errors->first('email') }}
+        </div>
+    @endif
+
     <div class="signup-container">
         <h2>Sign Up</h2>
         <form action="{{route('signup-post')}}" method="post">
             @csrf
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="text" name="surname" placeholder="Surname" required>
-            <input type="text" name="phone" placeholder="Phone number" required>
-            <input type="text" name="address" placeholder="Address" required>
-            <input type="date" name="dob" placeholder="Date Of Birth" required>
+            <input type="text" name="username" placeholder="Username" value="{{old('username')}}">
+            <input type="email" name="email" placeholder="Email" value="{{old('email')}}">
+            <input type="password" name="password" placeholder="Password" value="{{old('password')}}">
+            <input type="text" name="name" placeholder="Name" value="{{old('name')}}">
+            <input type="text" name="surname" placeholder="Surname" value="{{old('surname')}}">
+            <input type="text" name="phone" placeholder="Phone number" value="{{old('phone')}}">
+            <input type="text" name="address" placeholder="Address" value="{{old('address')}}">
+            <input type="date" name="dob" placeholder="Date Of Birth" value="{{old('dob')}}">
             <input type="submit" value="Sign Up">
         </form>
         <p>Already have an account? <a href="{{route('login')}}">Login</a></p>
