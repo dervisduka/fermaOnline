@@ -141,8 +141,8 @@
     <!-- Your content goes here -->
     <div class="profile-container">
         <!-- Profile content -->
-        <h2>Main Page</h2>
-        <p>Main Page information goes here.</p>
+        <h2>User Transcations</h2>
+        <p>User Transcations information goes here.</p>
         <!-- Add more profile-related content -->
     </div>
 </div>
@@ -188,15 +188,14 @@
     </div>
 </nav>
 
-
 <div class="spacer"></div>
 
 <div class="content">
     <!-- Your content goes here -->
     <div class="profile-container">
         <!-- Profile content -->
-        <h2>Main Page</h2>
-        <p>Main Page information goes here.</p>
+        <h2>ALL User Transcations</h2>
+        <p>ALL User Transcations information goes here.</p>
         <!-- Add more profile-related content -->
     </div>
 </div>

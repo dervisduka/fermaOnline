@@ -141,66 +141,11 @@
     <!-- Your content goes here -->
     <div class="profile-container">
         <!-- Profile content -->
-        <h2>Main Page</h2>
+        <h2>Description Page</h2>
         <p>Main Page information goes here.</p>
         <!-- Add more profile-related content -->
     </div>
 </div>
-
-@else
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #92db87; padding-top: 0; padding-bottom: 0;">
-    <div class="container top-container" style="padding-top: 0;">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand d-flex align-items-center ms-auto" href="#" style="color: white; height: 50%; padding-right: 0.5rem;">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo-img" style="height: 4.5em;"> 
-            <span class="ms-2" style="margin-top: 0.5em;">FermaOnline</span>
-        </a>
-        <div class="collapse navbar-collapse" id="navbarNav" style="padding-left: 0.5rem;">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white; line-height: 1; margin-right: 1rem;">
-                        <i class="fas fa-clipboard-list"></i> Product Management
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                        <li><a class="dropdown-item" href="{{route('mainPage', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-business-time"></i> Stock Management</a></li>
-                        <li><a class="dropdown-item" href="{{route('addProducts', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-plus"></i> Add Products</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white; line-height: 1; margin-right: 1rem;">
-                        <i class="fas fa-store-alt"></i> Animal Management
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                        <li><a class="dropdown-item" href="{{route('animal', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-paw"></i>Animal View </a></li>
-                        <li><a class="dropdown-item" href="{{route('addAnimal', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-plus"></i> Add Animals</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('transaction', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-chart-line"></i> Transactions History</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  style="color: white; line-height: 1; margin-right: 1rem;" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Log Out</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-
-<div class="spacer"></div>
-
-<div class="content">
-    <!-- Your content goes here -->
-    <div class="profile-container">
-        <!-- Profile content -->
-        <h2>Main Page</h2>
-        <p>Main Page information goes here.</p>
-        <!-- Add more profile-related content -->
-    </div>
-</div>
-
 @endif
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
