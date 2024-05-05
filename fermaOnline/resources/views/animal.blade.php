@@ -103,7 +103,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand d-flex align-items-center ms-auto" href="#" style="color: white; height: 50%; padding-right: 0.5rem;">
+        <a class="navbar-brand d-flex align-items-center ms-auto" href="{{route('mainPage', ['guid_id' => $data['guid_id']])}}" style="color: white; height: 50%; padding-right: 0.5rem;">
             <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo-img" style="height: 4.5em;"> 
             <span class="ms-2" style="margin-top: 0.5em;">FermaOnline</span>
         </a>
@@ -160,7 +160,7 @@
         <div class="collapse navbar-collapse" id="navbarNav" style="padding-left: 0.5rem;">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white; line-height: 1; margin-right: 1rem;">
+                    <a class="nav-link dropdown-toggle" href="{{route('mainPage', ['guid_id' => $data['guid_id']])}}" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white; line-height: 1; margin-right: 1rem;">
                         <i class="fas fa-clipboard-list"></i> Product Management
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
