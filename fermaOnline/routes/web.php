@@ -5,6 +5,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SignUpController;
 use App\Http\Middleware\CheckIfRouteExists;
 use App\Http\Controllers\MainPageController;
+use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\CompanyDescriptionController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\AddProductsController;
+use App\Http\Controllers\AddAnimalController    ;
 use Illuminate\Support\Facades\Route;
 use app\Http\Middleware\URLRedirect;
 
@@ -12,6 +17,18 @@ use app\Http\Middleware\URLRedirect;
 Route::get('/', [LoginController::class, 'show'])->name('emptyUrl');
 
 Route::get('/login', [LoginController::class, 'show'])->name('login');
+
+Route::get('/animal/{guid_id}', [AnimalController::class, 'show'])->name('animal');
+
+Route::get('/companyDescription/{guid_id}', [CompanyDescriptionController::class, 'show'])->name('companyDescription');
+
+Route::get('/transaction/{guid_id}', [TransactionController::class, 'show'])->name('transaction');
+
+
+Route::get('/addProducts/{guid_id}', [AddProductsController::class, 'show'])->name('addProducts');
+
+Route::get('/addAnimal/{guid_id}', [AddAnimalController::class, 'show'])->name('addAnimal');
+
 
 Route::get('/mainPage/{guid_id}', [MainPageController::class, 'show'])->name('mainPage');
 
