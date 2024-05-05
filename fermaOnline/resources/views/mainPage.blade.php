@@ -127,6 +127,7 @@
                         <li><a class="dropdown-item" href="#"><i class="fas fa-address-card"></i> My Data</a></li>
                         <li><a class="dropdown-item" href="#"><i class="fas fa-chart-line"></i> My Transactions</a></li>
                         <li><a class="dropdown-item" href="#"><i class="fas fa-wallet"></i> Add Funds</a></li>
+                        <li><a class="dropdown-item" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
                     </ul>
                 </li>
             </ul>
@@ -166,6 +167,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-chart-line"></i> Transactions History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  style="color: white; line-height: 1; margin-right: 1rem;" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Log Out</a>
                 </li>
             </ul>
         </div>
