@@ -143,11 +143,42 @@
 <div class="content">
     <!-- Your content goes here -->
     <div class="profile-container">
-        <!-- Profile content -->
-        <h2>Add Product Logic</h2>
-        <p>Add Product Logic</p>
-        <!-- Add more profile-related content -->
-    </div>
+    <h2>Add Product</h2>
+    <form action="{{ route('addProduct', ['guid_id' => $data['guid_id']]) }}" method="POST">
+        @csrf
+        <div class="mb-3">
+            <label for="lloji_id" class="form-label">Product Type</label>
+            <select class="form-select" id="lloji_id" name="lloji_id">
+                <option value="">Select Product Type</option>
+                @foreach($data['productTypes'] as $productType)
+                    <option value="{{ $productType->id }}">{{ $productType->lloji_produktit }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="sasia" class="form-label">Stock</label>
+            <input type="number" class="form-control" id="sasia" name="sasia">
+        </div>
+        <div class="mb-3">
+            <label for="cmimi" class="form-label">Price</label>
+            <input type="number" class="form-control" id="cmimi" name="cmimi">
+        </div>
+        <div class="mb-3">
+            <label for="foto_path" class="form-label">Photo Path</label>
+            <input type="text" class="form-control" id="foto_path" name="foto_path">
+        </div>
+        <div class="mb-3">
+            <label for="pershkrim_produkti" class="form-label">Product Description</label>
+            <textarea class="form-control" id="pershkrim_produkti" name="pershkrim_produkti"></textarea>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="is_active" name="is_active" value="1">
+            <label class="form-check-label" for="is_active">Is Active</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Product</button>
+    </form>
+</div>
+
 </div>
 @endif
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

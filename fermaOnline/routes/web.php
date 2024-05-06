@@ -9,7 +9,7 @@ use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\CompanyDescriptionController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\AddProductsController;
-use App\Http\Controllers\AddAnimalController    ;
+use App\Http\Controllers\AddAnimalController;
 use Illuminate\Support\Facades\Route;
 use app\Http\Middleware\URLRedirect;
 
@@ -24,13 +24,15 @@ Route::get('/companyDescription/{guid_id}', [CompanyDescriptionController::class
 
 Route::get('/transaction/{guid_id}', [TransactionController::class, 'show'])->name('transaction');
 
-
 Route::get('/addProducts/{guid_id}', [AddProductsController::class, 'show'])->name('addProducts');
+
+Route::post('/addProduct/{guid_id}', [AddProductsController::class, 'addProduct'])->name('addProduct');
 
 Route::get('/addAnimal/{guid_id}', [AddAnimalController::class, 'show'])->name('addAnimal');
 
-
 Route::get('/mainPage/{guid_id}', [MainPageController::class, 'show'])->name('mainPage');
+
+Route::put('/update-product/{guid_id}/{product_id}', [MainPageController::class, 'updateProduct'])->name('updateProduct');
 
 Route::get('/profile/{guid_id}', [ProfileController::class, 'show'])->name('profile');
 
