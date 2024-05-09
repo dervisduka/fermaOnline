@@ -144,6 +144,7 @@
     <!-- Your content goes here -->
     <div class="profile-container">
     <h2>Add Product</h2>
+    <!-- test -->
     <form action="{{ route('addProduct', ['guid_id' => $data['guid_id']]) }}" method="POST">
         @csrf
         <div class="mb-3">
