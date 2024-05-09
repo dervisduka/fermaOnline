@@ -139,13 +139,6 @@
 
 <div class="content">
     <!-- Your content goes here -->
-    <div class="profile-container">
-        <!-- Profile content -->
-        <h2>Main Page</h2>
-        <p>Main Page information goes here.</p>
-        <!-- Add more profile-related content -->
-    </div>
-</div>
     <div class="row">
         @foreach($data['produkte'] as $produkt)
             @if($produkt->is_active)
@@ -166,6 +159,7 @@
             @endif
         @endforeach
     </div>
+
 
 
 @else
