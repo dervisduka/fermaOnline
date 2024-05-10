@@ -161,7 +161,7 @@
         </div>
         <div class="mb-3">
             <label for="cmimi" class="form-label">Price</label>
-            <input type="number" class="form-control" id="cmimi" name="cmimi">
+            <input type="number" class="form-control" id="cmimi" name="cmimi" step='0.01'>
         </div>
         <div class="mb-3">
             <label for="foto_path" class="form-label">Photo Path</label>

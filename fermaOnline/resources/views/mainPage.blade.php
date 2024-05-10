@@ -226,7 +226,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="price" class="form-label">Price</label>
-                            <input type="number" class="form-control" id="price" name="price" value="{{ $produkt->cmimi }}">
+                            <input type="number" class="form-control" id="price" name="price" value="{{ $produkt->cmimi }}" step="0.01">
                         </div>
                         <!-- Add a checkbox input for is_active -->
                         <div class="mb-3 form-check">
