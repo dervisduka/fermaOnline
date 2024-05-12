@@ -30,16 +30,6 @@ class ProfileController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
-
-    public function changePasswordBtn(Request $request){
-        dd(Session::get('guid_id'));
-        return view('changePassword', ['guid_id' => Session::get('guid_id')]);
-    }
-
-    public function showChangePassword(){
-        return view('changePassword', ['guid_id' => Session::get('guid_id')]);
-    }
-
     public function changePassword(Request $request){
         $request->validate([
             'oldPassword' => 'required',

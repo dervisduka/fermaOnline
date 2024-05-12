@@ -44,12 +44,5 @@ Route::post('/signup-post', [SignUpController::class, 'signupPost'])->name('sign
 
 Route::post('/login-post', [LoginController::class, 'loginPost'])->name('login-post');
 
-Route::get('/profile/{guid_id}/changePass', [ProfileController::class, 'showChangePassword'])->name('showChangePassword');
-
 Route::post('/profile/{guid_id}/changePass-post', [ProfileController::class, 'changePassword'])->name('changePassword');
-
-
-
-
-
 
