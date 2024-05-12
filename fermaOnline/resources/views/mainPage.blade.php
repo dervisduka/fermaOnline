@@ -139,17 +139,28 @@
 
 <div class="content">
     <!-- Your content goes here -->
-    <div class="profile-container">
-        <!-- Profile content -->
-        <h2>Welcome, {{$data['username']}}</h2>
-        <p>Full name: {{$data['name']}} {{$data['surname']}}</p>
-        <p>Email: {{$data['email']}}</p>
-        <p>Phone Number: {{$data['phoneNumber']}}</p>
-        <p>Address: {{$data['address']}}</p>
-        <p>Date of Birth: {{$data['dob']}}</p>
-        <!-- Add more profile-related content -->
+    <div class="row">
+        @foreach($data['produkte'] as $produkt)
+            @if($produkt->is_active)
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="{{ $produkt->foto_path }}" class="card-img-top" alt="Product Image">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $produkt->pershkrim_produkti }}</h5>
+                            <p class="card-text">Price: ${{ $produkt->cmimi }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endforeach
     </div>
-</div>
+
+
 
 @else
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #92db87; padding-top: 0; padding-bottom: 0;">
@@ -193,17 +204,49 @@
 </nav>
 
 
-<div class="spacer"></div>
+<div class="spacer" style="margin-bottom:2rem;"></div>
 
 <div class="content">
-    <!-- Your content goes here -->
-    <div class="profile-container">
-        <!-- Profile content -->
-        <h2>Main Page</h2>
-        <p>Main Page information goes here.</p>
-        <!-- Add more profile-related content -->
-    </div>
+    @php $counter = 0; @endphp
+    @foreach($data['produkte'] as $produkt)
+        @if($counter % 3 == 0)
+            <div class="row">
+        @endif
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img src="{{ $produkt->foto_path }}" class="card-img-top" alt="Product Image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $produkt->pershkrim_produkti }}</h5>
+                    <form action="{{ route('updateProduct', ['guid_id' => $data['guid_id'], 'product_id' => $produkt->id]) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="mb-3">
+                            <label for="stock" class="form-label">Stock</label>
+                            <input type="number" class="form-control" id="stock" name="stock" value="{{ $produkt->sasia }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Price</label>
+                            <input type="number" class="form-control" id="price" name="price" value="{{ $produkt->cmimi }}" step="0.01">
+                        </div>
+                        <!-- Add a checkbox input for is_active -->
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="is_active" name="is_active" value="1" {{ $produkt->is_active ? 'checked' : '' }}>
+                            <label class="form-check-label" for="is_active">Is Active</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @php $counter++; @endphp
+        @if($counter % 3 == 0 || $loop->last)
+            </div>
+        @endif
+    @endforeach
 </div>
+
+
+
 
 @endif
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
