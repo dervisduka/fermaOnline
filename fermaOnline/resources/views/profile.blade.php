@@ -141,9 +141,14 @@
     <!-- Your content goes here -->
     <div class="profile-container">
         <!-- Profile content -->
-        <h2>Profile</h2>
-        <p>Your profile information goes here.</p>
-        <!-- Add more profile-related content -->
+        <h2>Profile Information</h2>
+        <p>Username: {{$data['username']}}</p>
+        <p>Full Name: {{$data['name']}} {{$data['surname']}}</p>
+        <p>Email: {{$data['email']}}</p>
+        <p>Phone Number: {{$data['phoneNumber']}}</p>
+        <p>Address: {{$data['address']}}</p>
+        <p>Date of Birth: {{$data['dob']}}</p> <br>
+        
     </div>
 </div>
 @endif
