@@ -17,12 +17,7 @@ class MainPageController extends Controller
         $data = [
             'guid_id' => $guid_id,
             'username' => $user->username,
-            'name' => $user->emer,
-            'surname' => $user->mbiemer,
             'email' => $user->email,
-            'address' => $user->adresa,
-            'phoneNumber' => $user->numer_kontakti,
-            'dob' => $user->data_e_lindjes,
             'is_admin' => $user->is_admin,
             'produkte' => $produkt,
         ];
