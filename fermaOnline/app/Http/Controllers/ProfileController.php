@@ -46,21 +46,21 @@ class ProfileController extends Controller
             'newPassword' => 'required',
             'newPasswordConfirmation' => 'required',
         ]);
-
+    
         $data = [
             'oldPassword' => $request->oldPassword,
             'newPassword' => $request->newPassword,
             'newPasswordConfirmation' => $request->newPasswordConfirmation,
         ];
-
+    
         $user = Auth::user();
-
-        if($data['newPassword'] == $data['newPasswordConfirmation'] || Hash::make($data['oldPassword'] == $user->password)) {
+    
+        if(Hash::check($data['oldPassword'], $user->password) && $data['newPassword'] == $data['newPasswordConfirmation']) {
             Perdorues::where('guid_id', Session::get('guid_id'))->update(['password' => Hash::make($data['newPassword'])]);
-            return redirect()->route('profile', ['guid_id' => Session::get('guid_id')]);
-        }else{
-            return redirect()->route('showChangePassword', ['guid_id', Session::get('guid_id')]);
+            return redirect()->route('profile', ['guid_id' => Session::get('guid_id')])->with('success', 'Password changed successfully.');
+        } else {
+            return redirect()->route('profile', ['guid_id' => Session::get('guid_id')])->with('error', 'Password change failed. Please check your old password and try again.');
         }
-    }
+    }    
 }
 

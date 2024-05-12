@@ -148,23 +148,44 @@
 </nav>
 
 <div class="spacer"></div>
-<div class="content">
-    <div class="row row-cols-1 row-cols-md-5 g-4" style="margin-top: 0.125em;">
+div class="content">
+    <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-top: 0.125em;">
         @foreach($data['kafshe'] as $kafsha)
         <div class="col">
-            <div class="card text-center" style="width: 14rem;">
-                <img src="{{ asset($kafsha->foto_path) }}" class="card-img-top mx-auto d-block" alt="{{ $kafsha->emer_shkencor }}" style="height: 8em; width: auto;">
+            <div class="card text-center" style="width: 22rem;">
+                <img src="{{ asset($kafsha->foto_path) }}" class="card-img-top mx-auto d-block" alt="{{ $kafsha->emer_shkencor }}" style="height: 12em; width: auto;">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $kafsha->emer_shkencor }}</h5>
-                    <div class="row">
-                        <div class="col text-left">
-                            <p><strong>Breed:</strong> {{ $kafsha->rraca }}</p>
-                        </div>
-                        <div class="col text-right">
-                            <p><strong>Type:</strong> {{ $kafsha->lloji }}</p>
-                        </div>
+                    <h5 class="card-title">{{ $kafsha->rraca }}</h5>
+                    <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#animalModal{{ $kafsha->id }}">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="animalModal{{ $kafsha->id }}" tabindex="-1" aria-labelledby="animalModalLabel{{ $kafsha->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="animalModalLabel{{ $kafsha->id }}">Animal Information</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <p class="card-text">{{ $kafsha->pershkrim_kafshe }}</p>
+                    <div class="modal-body text-center">
+                        <h5 style="margin-bottom:1em;">Rraca: {{ $kafsha->rraca }}</h5>
+                        <div class="row">
+                            <div class="col text-left">
+                                <h6>Scientific Name: {{ $kafsha->emer_shkencor }}</h6>
+                            </div>
+                            <div class="col text-right">
+                                <h6>Type: {{ $kafsha->lloji }}</h6>
+                            </div>
+                        </div>
+                        <img src="{{ asset($kafsha->foto_path) }}" class="img-fluid" alt="{{ $kafsha->emer_shkencor }}" style="max-width: 100%; height: auto;">
+                        <p>{{ $kafsha->pershkrim_kafshe }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>

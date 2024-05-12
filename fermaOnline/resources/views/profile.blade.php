@@ -134,23 +134,116 @@
         </div>
     </div>
 </nav>
-
 <div class="spacer"></div>
-
 <div class="content">
-    <!-- Your content goes here -->
-    <div class="profile-container">
-        <!-- Profile content -->
-        <h2>Profile Information</h2>
-        <p>Username: {{$data['username']}}</p>
-        <p>Full Name: {{$data['name']}} {{$data['surname']}}</p>
-        <p>Email: {{$data['email']}}</p>
-        <p>Phone Number: {{$data['phoneNumber']}}</p>
-        <p>Address: {{$data['address']}}</p>
-        <p>Date of Birth: {{$data['dob']}}</p> <br>
-        
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                <div class="card-header bg-lightgrey text-green">
+                    <h4 class="mb-0">Profile Information</h4>
+                </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="profile-info row mb-3">
+                                    <label for="username" class="col-4"><strong>Username:</strong></label>
+                                    <div class="col-8">
+                                        <input type="text" id="username" class="form-control" value="{{$data['username']}}" readonly style="pointer-events: none;">
+                                    </div>
+                                </div>
+                                <div class="profile-info row mb-3">
+                                    <label for="email" class="col-4"><strong>Email:</strong></label>
+                                    <div class="col-8">
+                                        <input type="email" id="email" class="form-control" value="{{$data['email']}}" readonly style="pointer-events: none;">
+                                    </div>
+                                </div>
+                                <div class="profile-info row mb-3">
+                                    <label for="dob" class="col-4"><strong>Date of Birth:</strong></label>
+                                    <div class="col-8">
+                                        <input type="date" id="dob" class="form-control" value="{{$data['dob']}}" readonly style="pointer-events: none;">
+                                    </div>
+                                </div>
+                                                                <div class="profile-info row mb-3">
+                                    <label for="phone" class="col-4"><strong>Phone Number:</strong></label>
+                                    <div class="col-8">
+                                        <input type="tel" id="phone" class="form-control" value="{{$data['phoneNumber']}}" readonly style="pointer-events: none;">
+                                    </div>
+                                </div>
+                                <div class="profile-info row mb-3">
+                                    <label for="address" class="col-4"><strong>Address:</strong></label>
+                                    <div class="col-8">
+                                        <input type="text" id="address" class="form-control" value="{{$data['address']}}" readonly style="pointer-events: none;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="profile-info row mb-3">
+                                    <label for="fullname" class="col-4"><strong>Full Name:</strong></label>
+                                    <div class="col-8">
+                                        <input type="text" id="fullname" class="form-control" value="{{$data['name']}} {{$data['surname']}}" readonly style="pointer-events: none;">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                                Change Password
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form id="changePasswordForm" action="{{ route('changePassword', ['guid_id' => $data['guid_id']]) }}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="oldPassword" class="form-label">Old Password</label>
+                        <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="newPassword" class="form-label">New Password</label>
+                        <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="newPasswordConfirmation" class="form-label">Confirm New Password</label>
+                        <input type="password" class="form-control" id="newPasswordConfirmation" name="newPasswordConfirmation" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
+
+
 @endif
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
