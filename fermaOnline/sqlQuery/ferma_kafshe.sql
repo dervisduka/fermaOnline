@@ -28,7 +28,7 @@ CREATE TABLE `kafshe` (
   `lloji` varchar(40) NOT NULL,
   `rraca` varchar(40) NOT NULL,
   `foto_path` varchar(40) NOT NULL,
-  `pershkrim_kafshe` varchar(500) NOT NULL,
+  `pershkrim_kafshe` VARCHAR(65535); NOT NULL,
     `updated_at` date DEFAULT NULL,
   `created_at` date NOT NULL,
   PRIMARY KEY (`id`)
