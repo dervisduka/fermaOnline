@@ -144,9 +144,9 @@
             @if($produkt->is_active)
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img src="{{ $produkt->foto_path }}" class="card-img-top" alt="Product Image">
+                        <img src="{{ asset($produkt->foto_path) }}" class="card-img-top mx-auto" alt="Product Image" style="width:11em; height:13em;">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $produkt->pershkrim_produkti }}</h5>
+                        <h5 class="card-title text-center">{{ $produkt->pershkrim_produkti }}</h5>
                             <p class="card-text">Price: ${{ $produkt->cmimi }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
@@ -214,9 +214,9 @@
         @endif
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
-                <img src="{{ $produkt->foto_path }}" class="card-img-top" alt="Product Image">
+                <img src="{{ asset($produkt->foto_path) }}" class="card-img-top mx-auto d-block" alt="Product Image" style="width:11em; height:13em;">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $produkt->pershkrim_produkti }}</h5>
+                    <h5 class="card-title text-center">{{ $produkt->pershkrim_produkti }}</h5>
                     <form action="{{ route('updateProduct', ['guid_id' => $data['guid_id'], 'product_id' => $produkt->id]) }}" method="POST">
                         @csrf
                         @method('PUT')
@@ -233,7 +233,7 @@
                             <input type="checkbox" class="form-check-input" id="is_active" name="is_active" value="1" {{ $produkt->is_active ? 'checked' : '' }}>
                             <label class="form-check-label" for="is_active">Is Active</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary float-end">Save</button>
                     </form>
                 </div>
             </div>
