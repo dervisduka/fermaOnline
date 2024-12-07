@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page</title>
+    <title>Add Animal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
@@ -17,7 +17,7 @@
         .navbar {
             background-color: #fff;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000; /* Ensure navbar is on top of other content */
+            z-index: 1000;
             position: fixed;
             width: 100%;
             top: 0;
@@ -25,74 +25,60 @@
         }
 
         .logo-img {
-            width: 7rem; /* 112px */
-            height: auto; /* Maintain aspect ratio */
-            margin-right: 0.625rem; /* 10px */
-            margin-top: 0.625rem; /* 10px */
+            width: 7rem;
+            height: auto;
+            margin-right: 0.625rem;
+            margin-top: 0.625rem;
         }
 
         .spacer {
-            height: 56px; /* Adjust height to match the height of the navbar */
-            /* Height of navbar might vary based on your design */
+            height: 56px;
         }
 
         .content {
-            padding-top: 56px; /* Ensure content starts below the navbar */
-            /* You can adjust this value based on the height of your navbar */
+            padding-top: 56px;
         }
 
-        .profile-container {
+        .form-container {
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-            width: 300px;
+            width: 400px;
             margin: auto;
         }
 
-        .profile-container h2 {
+        .form-container h2 {
             text-align: center;
             margin-bottom: 20px;
         }
 
-        .profile-container p {
-            text-align: center;
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-container form input,
+        .form-container form textarea,
+        .form-container form select {
             margin-bottom: 10px;
-        }
-
-        .profile-container a {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-            text-decoration: none;
-            color: #4CAF50;
-        }
-
-        .profile-container input[type="password"] {
-            width: 100%;
             padding: 10px;
-            margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            box-sizing: border-box;
         }
 
-        .profile-container input[type="submit"] {
-            width: 100%;
+        .form-container form button {
             padding: 10px;
-            border: none;
             background-color: #4CAF50;
             color: white;
+            border: none;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
         }
 
-        .profile-container input[type="submit"]:hover {
+        .form-container form button:hover {
             background-color: #45a049;
-        }
-        .navbar-nav .nav-item {
-        margin-top: 0;
         }
     </style>
 </head>
@@ -141,15 +127,38 @@
 <div class="spacer"></div>
 
 <div class="content">
-    <!-- Your content goes here -->
-    <div class="profile-container">
-        <!-- Profile content -->
-        <h2>Add Animal Logic</h2>
-        <p>Add Animal Logic</p>
-        <!-- Add more profile-related content -->
+    <div class="form-container">
+        <h2>Add Animal</h2>
+        <form method="POST" action="{{ route('addAnimal.store', ['guid_id' => $data['guid_id']]) }}" enctype="multipart/form-data">
+            @csrf
+            <div class="mb-3">
+                <input type="text" class="form-control" name="emer_shkencor" placeholder="Scientific Name" required>
+            </div>
+            <div class="mb-3">
+                <select class="form-control" name="lloji" required>
+                    <option value="" disabled selected>Select Type</option>
+                    <option value="lope">Lope</option>
+                    <option value="derr">Derr</option>
+                    <option value="dhi">Dhi</option>
+                    <option value="pule">Pule</option>
+                    <option value="lepur">Lepur</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" name="rraca" placeholder="Breed" required>
+            </div>
+            <div class="mb-3">
+                <input type="file" class="form-control" name="photo" accept="image/*" required>
+            </div>
+            <div class="mb-3">
+                <textarea class="form-control" name="pershkrim_kafshe" placeholder="Description"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Animal</button>
+        </form>
     </div>
 </div>
+
 @endif
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

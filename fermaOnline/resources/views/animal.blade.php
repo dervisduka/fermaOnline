@@ -148,12 +148,12 @@
 </nav>
 
 <div class="spacer"></div>
-div class="content">
+<div class="content">
     <div class="row row-cols-1 row-cols-md-4 g-4" style="margin-top: 0.125em;">
         @foreach($data['kafshe'] as $kafsha)
         <div class="col">
             <div class="card text-center" style="width: 22rem;">
-                <img src="{{ asset($kafsha->foto_path) }}" class="card-img-top mx-auto d-block" alt="{{ $kafsha->emer_shkencor }}" style="height: 12em; width: auto;">
+                <img src="{{ asset($kafsha->foto_path) }}" class="card-img-top mx-auto d-block" alt="{{ $kafsha->emer_shkencor }}" style="height: 12em; width: 19em; margin-top:1em;">
                 <div class="card-body">
                     <h5 class="card-title">{{ $kafsha->rraca }}</h5>
                     <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#animalModal{{ $kafsha->id }}">
@@ -240,7 +240,7 @@ div class="content">
         @foreach($data['kafshe'] as $kafsha)
         <div class="col">
             <div class="card text-center" style="width: 22rem;">
-                <img src="{{ asset($kafsha->foto_path) }}" class="card-img-top mx-auto d-block" alt="{{ $kafsha->emer_shkencor }}" style="height: 12em; width: auto;">
+                <img src="{{ asset($kafsha->foto_path) }}" class="card-img-top mx-auto d-block" alt="{{ $kafsha->emer_shkencor }}" style="height: 12em; width: 19em; margin-top:1em;">
                 <div class="card-body">
                     <h5 class="card-title">{{ $kafsha->rraca }}</h5>
                     <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#animalModal{{ $kafsha->id }}">
@@ -267,7 +267,7 @@ div class="content">
                                 <h6>Type: {{ $kafsha->lloji }}</h6>
                             </div>
                         </div>
-                        <img src="{{ asset($kafsha->foto_path) }}" class="img-fluid" alt="{{ $kafsha->emer_shkencor }}" style="max-width: 100%; height: auto;">
+                        <img src="{{ asset($kafsha->foto_path) }}" class="img-fluid" alt="{{ $kafsha->emer_shkencor }}" style="max-width: 100%; height: 30em;">
                         <p>{{ $kafsha->pershkrim_kafshe }}</p>
                     </div>
                     <div class="modal-footer">

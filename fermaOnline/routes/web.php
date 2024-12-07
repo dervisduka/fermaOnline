@@ -30,6 +30,8 @@ Route::post('/addProduct/{guid_id}', [AddProductsController::class, 'addProduct'
 
 Route::get('/addAnimal/{guid_id}', [AddAnimalController::class, 'show'])->name('addAnimal');
 
+Route::post('/addAnimal/{guid_id}', [AddAnimalController::class, 'store'])->name('addAnimal.store');
+
 Route::get('/mainPage/{guid_id}', [MainPageController::class, 'show'])->name('mainPage');
 
 Route::put('/update-product/{guid_id}/{product_id}', [MainPageController::class, 'updateProduct'])->name('updateProduct');
@@ -45,4 +47,7 @@ Route::post('/signup-post', [SignUpController::class, 'signupPost'])->name('sign
 Route::post('/login-post', [LoginController::class, 'loginPost'])->name('login-post');
 
 Route::post('/profile/{guid_id}/changePass-post', [ProfileController::class, 'changePassword'])->name('changePassword');
+
+Route::get('/downloadCertificate/{guid_id}', [CompanyDescriptionController::class, 'downloadCertificate'])->name('downloadCertificate');
+
 

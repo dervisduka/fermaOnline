@@ -27,9 +27,9 @@ CREATE TABLE `kafshe` (
   `emer_shkencor` varchar(60) NOT NULL,
   `lloji` varchar(40) NOT NULL,
   `rraca` varchar(40) NOT NULL,
-  `foto_path` varchar(40) NOT NULL,
+  `foto_path` varchar(255) NOT NULL,
   `pershkrim_kafshe` VARCHAR(65535); NOT NULL,
-    `updated_at` date DEFAULT NULL,
+  `updated_at` date DEFAULT NULL,
   `created_at` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

@@ -9,7 +9,8 @@ use App\Models\Produkt;
 use Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class AddProductsController extends Controller
 {
@@ -24,6 +25,7 @@ class AddProductsController extends Controller
         ];
         return view('addProducts', ['data' => $data]);
     }
+
     public function logout(Request $request){
         Auth::logout();
         return redirect()->route('login');
@@ -35,20 +37,29 @@ class AddProductsController extends Controller
             'lloji_id' => 'required|exists:llojprodukti,id',
             'sasia' => 'required|integer',
             'cmimi' => 'required|numeric',
-            'foto_path' => 'required|string',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'pershkrim_produkti' => 'required|string',
             'is_active' => 'boolean',
         ]);
-    
-        $product = new Produkt();
-        $product->lloji_id = $validatedData['lloji_id'];
-        $product->sasia = $validatedData['sasia'];
-        $product->cmimi = $validatedData['cmimi'];
-        $product->foto_path = $validatedData['foto_path'];
-        $product->pershkrim_produkti = $validatedData['pershkrim_produkti'];
-        $product->is_active = $request->has('is_active');
-        $product->save();
-    
-        return redirect()->back()->with('success', 'Product added successfully');
-    }    
+
+           // Handle file upload
+          if ($request->hasFile('foto')) {
+              $image = $request->file('foto');
+              $imageName = time() . '.' . $image->getClientOriginalExtension();
+              $image->move(public_path('images'), $imageName); // Store the image in the public/images directory
+             $photoPath = 'images/' . $imageName;
+          }
+
+        $product = Produkt::create([
+            'lloji_id' => $validatedData['lloji_id'],
+            'sasia' => $validatedData['sasia'],
+            'cmimi' => $validatedData['cmimi'],
+            'foto_path' => $photoPath,
+            'pershkrim_produkti' => $validatedData['pershkrim_produkti'],
+            'is_active' => $request->has('is_active'),
+        ]);
+
+        return redirect()->route('mainPage', ['guid_id' => $guid_id])->with('success', 'Product added successfully');
+
+    }
 }

@@ -144,7 +144,7 @@
     <!-- Your content goes here -->
     <div class="profile-container">
     <h2>Add Product</h2>
-    <form action="{{ route('addProduct', ['guid_id' => $data['guid_id']]) }}" method="POST">
+        <form action="{{ route('addProduct', ['guid_id' => $data['guid_id']]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="lloji_id" class="form-label">Product Type</label>
@@ -157,19 +157,19 @@
         </div>
         <div class="mb-3">
             <label for="sasia" class="form-label">Stock</label>
-            <input type="number" class="form-control" id="sasia" name="sasia">
+            <input type="number" class="form-control" id="sasia" name="sasia" required>
         </div>
         <div class="mb-3">
             <label for="cmimi" class="form-label">Price</label>
-            <input type="number" class="form-control" id="cmimi" name="cmimi" step='0.01'>
+            <input type="number" class="form-control" id="cmimi" name="cmimi" step='0.01' required>
         </div>
         <div class="mb-3">
-            <label for="foto_path" class="form-label">Photo Path</label>
-            <input type="text" class="form-control" id="foto_path" name="foto_path">
+            <label for="foto" class="form-label">Photo</label>
+            <input type="file" class="form-control" id="foto" name="foto" accept="image/*" required>
         </div>
         <div class="mb-3">
             <label for="pershkrim_produkti" class="form-label">Product Description</label>
-            <textarea class="form-control" id="pershkrim_produkti" name="pershkrim_produkti"></textarea>
+            <textarea class="form-control" id="pershkrim_produkti" name="pershkrim_produkti" required></textarea>
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="is_active" name="is_active" value="1">
@@ -177,7 +177,19 @@
         </div>
         <button type="submit" class="btn btn-primary">Add Product</button>
     </form>
+
 </div>
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 
 </div>
 @endif

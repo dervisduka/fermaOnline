@@ -135,7 +135,7 @@
     </div>
 </nav>
 
-<div class="spacer"></div>
+<div class="spacer" style="margin-bottom:2rem;"></div>
 
 <div class="content">
     <!-- Your content goes here -->
@@ -144,7 +144,7 @@
             @if($produkt->is_active)
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img src="{{ asset($produkt->foto_path) }}" class="card-img-top mx-auto" alt="Product Image" style="width:11em; height:13em;">
+                        <img src="{{ asset($produkt->foto_path) }}" class="card-img-top mx-auto d-block" alt="Product Image" style="width:11em; height:13em; margin-top:2em;">
                         <div class="card-body">
                         <h5 class="card-title text-center">{{ $produkt->pershkrim_produkti }}</h5>
                             <p class="card-text">Price: ${{ $produkt->cmimi }}</p>
@@ -214,7 +214,7 @@
         @endif
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
-                <img src="{{ asset($produkt->foto_path) }}" class="card-img-top mx-auto d-block" alt="Product Image" style="width:11em; height:13em;">
+                <img src="{{ asset($produkt->foto_path) }}" class="card-img-top mx-auto d-block" alt="Product Image" style="width:11em; height:13em; margin-top:2em;">
                 <div class="card-body">
                     <h5 class="card-title text-center">{{ $produkt->pershkrim_produkti }}</h5>
                     <form action="{{ route('updateProduct', ['guid_id' => $data['guid_id'], 'product_id' => $produkt->id]) }}" method="POST">

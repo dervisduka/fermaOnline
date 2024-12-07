@@ -7,6 +7,8 @@ use App\Models\Perdorues;
 use Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
+use PDF;
+
 
 class CompanyDescriptionController extends Controller
 {
@@ -24,4 +26,9 @@ class CompanyDescriptionController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
+    public function downloadCertificate(string $guid_id) {
+        $pdf = PDF::loadView('Certificate');
+        return $pdf->download('certificate.pdf');
+    }
+    
 }
