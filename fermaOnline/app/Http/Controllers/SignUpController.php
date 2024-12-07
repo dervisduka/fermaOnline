@@ -63,7 +63,7 @@ class SignUpController extends Controller
 
         $user = Perdorues::create($data);
 
-        // Mail::to($request->email)->send(new WelcomeEmail());
+        Mail::to($request->email)->send(new WelcomeEmail());
         
         return redirect()->route('login')->with('success', 'Account created successfully');
     }
