@@ -27,7 +27,7 @@ CREATE TABLE `transaksion` (
   `id_perdoruesi` varchar(60) NOT NULL,
   `totali` decimal(5,2) NOT NULL,
   `data_transaksionit` date NOT NULL,
-    `updated_at` date DEFAULT NULL,
+  `updated_at` date DEFAULT NULL,
   `created_at` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_id_klienti_transaksion` (`id_perdoruesi`),

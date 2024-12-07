@@ -28,7 +28,7 @@ CREATE TABLE `produkt` (
   `sasia` int NOT NULL,
   `cmimi` DECIMAL(8,2) NOT NULL,
   `foto_path` varchar(255) NOT NULL,
-  `pershkrim_produkti` VARCHAR(65535); NOT NULL,
+  `pershkrim_produkti` VARCHAR(65535) NOT NULL,
     `updated_at` date DEFAULT NULL,
   `created_at` date NOT NULL,
   `is_active` bit NOT NULL,
