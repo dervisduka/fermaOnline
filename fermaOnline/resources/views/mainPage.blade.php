@@ -127,6 +127,7 @@
                         <li><a class="dropdown-item" href="{{ route('profile', ['guid_id' => $data['guid_id']]) }}"><i class="fas fa-address-card"></i> My Data</a></li>
                         <li><a class="dropdown-item" href="{{route('transaction', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-chart-line"></i> My Transactions</a></li>
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#walletModal"><i class="fas fa-wallet"></i> Add Funds</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#walletModal"><i class="fas fa-shopping-cart"></i>Basket</a></li>
                         <li><a class="dropdown-item" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
                     </ul>
                 </li>
@@ -142,20 +143,22 @@
     <div class="row">
         @foreach($data['produkte'] as $produkt)
             @if($produkt->is_active)
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <img src="{{ asset($produkt->foto_path) }}" class="card-img-top mx-auto d-block" alt="Product Image" style="width:11em; height:13em; margin-top:2em;">
-                        <div class="card-body">
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="{{ asset($produkt->foto_path) }}" class="card-img-top mx-auto d-block" alt="Product Image" style="width:11em; height:13em; margin-top:2em;">
+                    <div class="card-body">
                         <h5 class="card-title text-center">{{ $produkt->pershkrim_produkti }}</h5>
-                            <p class="card-text">Price: ${{ $produkt->cmimi }}</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                </div>
+                        <p class="card-text">Price: ${{ $produkt->cmimi }}</p>
+                        <p class="d-none product-id">{{ $produkt->id }}</p> <!-- Added a class for easier selection -->
+                        <div class="d-flex justify-content-between align-items-center row">
+                            <div class="col-md-10"></div>
+                            <div class="btn-group col-md-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart">Add</button>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
             @endif
         @endforeach
     </div>
@@ -308,5 +311,29 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    let cart = [];
+
+    function addToCart(event) {
+        const cardBody = event.target.closest('.card-body');
+
+        const product = {
+            id: cardBody.querySelector('.product-id').textContent, 
+            description: cardBody.querySelector('.card-title').textContent, 
+            price: cardBody.querySelector('.card-text').textContent.replace('Price: $', '') 
+        };
+
+        cart.push(product);
+
+        console.log('Product added to cart:', product);
+        console.log('Current cart:', cart);
+
+        alert(`Added to cart: ${product.description}`);
+    }
+
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', addToCart);
+    });
+</script>
 </body>
 </html>
