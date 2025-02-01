@@ -45,6 +45,21 @@ class MainPageController extends Controller
     }
     
     
+    public function addToWallet(Request $request, $guid_id)
+    {
+        // Validate the input data
+        $validatedData = $request->validate([
+            'amount' => 'required|numeric|min:0',
+        ]);
+
+        // Retrieve the user
+        $user = Perdorues::where('guid_id', $guid_id)->firstOrFail();
+
+        $user->balanca += $validatedData['amount']; 
+        $user->save();
+
+        return redirect()->back()->with('success', 'Amount added to wallet successfully!');
+    }
     
 
     public function logout(Request $request){

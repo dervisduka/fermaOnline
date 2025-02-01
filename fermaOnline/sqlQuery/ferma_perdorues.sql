@@ -34,7 +34,7 @@ CREATE TABLE `perdorues` (
   `email` varchar(255) NOT NULL,
   `is_admin` bit NOT NULL,
   `numer_kontakti` varchar(255) NOT NULL,
-  `balanca` decimal(5,2) DEFAULT NULL,
+  `balanca` decimal(10,2) DEFAULT NULL,
   `adresa` varchar(255) NOT NULL,
   `data_e_lindjes` date NOT NULL,
   `updated_at` date DEFAULT NULL,

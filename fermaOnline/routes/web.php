@@ -50,4 +50,4 @@ Route::post('/profile/{guid_id}/changePass-post', [ProfileController::class, 'ch
 
 Route::get('/downloadCertificate/{guid_id}', [CompanyDescriptionController::class, 'downloadCertificate'])->name('downloadCertificate');
 
-
+Route::post('/mainPage/{guid_id}/add-to-wallet', [MainPageController::class, 'addToWallet'])->name('add.to.wallet');

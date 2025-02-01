@@ -250,58 +250,60 @@
 
 
 
-<div class="modal fade" id="walletModal" tabindex="-1" aria-labelledby="walletModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="walletModalLabel">Wallet</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <!-- Card Image Placeholder -->
-                        <div class="mb-3 text-center">
-                            <img src="{{asset('images/Visa-Mastercard.png')}}" alt="Card Placeholder" class="img-fluid">
+        <div class="modal fade" id="walletModal" tabindex="-1" aria-labelledby="walletModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="walletModalLabel">Wallet</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        
-                        <!-- Name & Amount -->
-                        <div class="row mb-3">
-                            <div class="col">
-                                <label for="fullName" class="form-label">Emer Mbiemer</label>
-                                <input type="text" class="form-control" id="fullName" placeholder="Full Name">
+                        <div class="modal-body">
+                        <form action="{{ route('add.to.wallet', ['guid_id' => $data['guid_id']]) }}" method="POST">
+                            @csrf
+                            <!-- Card Image Placeholder -->
+                            <div class="mb-3 text-center">
+                                <img src="{{ asset('images/Visa-Mastercard.png') }}" alt="Card Placeholder" class="img-fluid">
                             </div>
-                            <div class="col">
-                                <label for="amount" class="form-label">Shuma</label>
-                                <input type="text" class="form-control" id="amount" placeholder="Amount">
+                            
+                            <!-- Name & Amount -->
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="fullName" class="form-label">Emer Mbiemer</label>
+                                    <input type="text" class="form-control" id="fullName" placeholder="Full Name">
+                                </div>
+                                <div class="col">
+                                    <label for="amount" class="form-label">Shuma</label>
+                                    <input type="text" class="form-control" id="amount" name="amount" placeholder="Amount">
+                                </div>
                             </div>
-                        </div>
-                        
-                        <!-- Card Number -->
-                        <div class="mb-3">
-                            <label for="cardNumber" class="form-label">10 shifrat</label>
-                            <input type="text" class="form-control" id="cardNumber" placeholder="Card Number">
-                        </div>
+                            
+                            <!-- Card Number -->
+                            <div class="mb-3">
+                                <label for="cardNumber" class="form-label">10 shifrat</label>
+                                <input type="text" class="form-control" id="cardNumber" placeholder="Card Number">
+                            </div>
 
-                         <!-- Expiry Date & CVV -->
-                         <div class="row mb-3">
-                            <div class="col">
-                                <label for="expiryDate" class="form-label">Expiry Date</label>
-                                <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY">
+                            <!-- Expiry Date & CVV -->
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="expiryDate" class="form-label">Expiry Date</label>
+                                    <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY">
+                                </div>
+                                <div class="col">
+                                    <label for="cvv" class="form-label">3 shifrat pas</label>
+                                    <input type="text" class="form-control" id="cvv" placeholder="CVV">
+                                </div>
                             </div>
-                            <div class="col">
-                                <label for="cvv" class="form-label">3 shifrat pas</label>
-                                <input type="text" class="form-control" id="cvv" placeholder="CVV">
+                            
+                            <!-- Transfer Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Transfero</button>
                             </div>
+                        </form>
+
                         </div>
-                        
-                        <!-- Transfer Button -->
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Transfero</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </div>
     </div>
 
 
