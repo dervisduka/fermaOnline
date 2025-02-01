@@ -126,7 +126,7 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{{ route('profile', ['guid_id' => $data['guid_id']]) }}"><i class="fas fa-address-card"></i> My Data</a></li>
                         <li><a class="dropdown-item" href="{{route('transaction', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-chart-line"></i> My Transactions</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-wallet"></i> Add Funds</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#walletModal"><i class="fas fa-wallet"></i> Add Funds</a></li>
                         <li><a class="dropdown-item" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
                     </ul>
                 </li>
@@ -245,10 +245,66 @@
     @endforeach
 </div>
 
-
-
-
 @endif
+
+
+
+
+<div class="modal fade" id="walletModal" tabindex="-1" aria-labelledby="walletModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="walletModalLabel">Wallet</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <!-- Card Image Placeholder -->
+                        <div class="mb-3 text-center">
+                            <img src="{{asset('images/Visa-Mastercard.png')}}" alt="Card Placeholder" class="img-fluid">
+                        </div>
+                        
+                        <!-- Name & Amount -->
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="fullName" class="form-label">Emer Mbiemer</label>
+                                <input type="text" class="form-control" id="fullName" placeholder="Full Name">
+                            </div>
+                            <div class="col">
+                                <label for="amount" class="form-label">Shuma</label>
+                                <input type="text" class="form-control" id="amount" placeholder="Amount">
+                            </div>
+                        </div>
+                        
+                        <!-- Card Number -->
+                        <div class="mb-3">
+                            <label for="cardNumber" class="form-label">10 shifrat</label>
+                            <input type="text" class="form-control" id="cardNumber" placeholder="Card Number">
+                        </div>
+
+                         <!-- Expiry Date & CVV -->
+                         <div class="row mb-3">
+                            <div class="col">
+                                <label for="expiryDate" class="form-label">Expiry Date</label>
+                                <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY">
+                            </div>
+                            <div class="col">
+                                <label for="cvv" class="form-label">3 shifrat pas</label>
+                                <input type="text" class="form-control" id="cvv" placeholder="CVV">
+                            </div>
+                        </div>
+                        
+                        <!-- Transfer Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Transfero</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
