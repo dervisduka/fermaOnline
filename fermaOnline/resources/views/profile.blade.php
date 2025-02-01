@@ -184,6 +184,12 @@
                                         <input type="text" id="fullname" class="form-control" value="{{$data['name']}} {{$data['surname']}}" readonly style="pointer-events: none;">
                                     </div>
                                 </div>
+                                <div class="profile-info row mb-3">
+                                    <label for="Wallet" class="col-4"><strong>Wallet</strong></label>
+                                    <div class="col-8">
+                                        <input type="text" id="Wallet" class="form-control" value="{{$data['balanca']}}" readonly style="pointer-events: none;">
+                                    </div>
+                                </div>
                             </div>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
                                 Change Password

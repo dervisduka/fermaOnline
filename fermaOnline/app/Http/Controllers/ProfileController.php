@@ -22,6 +22,7 @@ class ProfileController extends Controller
             'address' => $user->adresa,
             'dob' => $user->data_e_lindjes,
             'is_admin' => $user->is_admin,
+            'balanca' => $user->balanca,
         ];
         return view('profile', ['data' => $data]);
     }
