@@ -7,8 +7,8 @@ use App\Models\Perdorues;
 use Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
+use Barryvdh\DomPDF\Facade;
 use PDF;
-
 
 class CompanyDescriptionController extends Controller
 {
@@ -22,13 +22,14 @@ class CompanyDescriptionController extends Controller
         ];
         return view('companyDescription', ['data' => $data]);
     }
+
     public function logout(Request $request){
         Auth::logout();
         return redirect()->route('login');
     }
+
     public function downloadCertificate(string $guid_id) {
-        $pdf = PDF::loadView('Certificate');
+        $pdf = PDF::loadView('Certificate')->setPaper('a4', 'landscape');
         return $pdf->download('certificate.pdf');
     }
-    
 }

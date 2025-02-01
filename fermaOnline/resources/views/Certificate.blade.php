@@ -7,79 +7,98 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Georgia', serif;
             background-color: #F3FFF7;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         .certificate-container {
-            border: 10px solid #4CAF50;
-            padding: 30px;
-            margin: 50px auto;
-            width: 800px;
+            border: 15px solid gold;
+            padding: 40px;
+            width: 900px;
             background-color: white;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .certificate-header {
             text-align: center;
-            margin-bottom: 20px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
         }
 
         .certificate-header h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: bold;
-            margin: 0;
+            margin-bottom: 10px;
             color: #333;
-        }
-
-        .certificate-body {
-            text-align: center;
-            margin: 20px 0;
+            font-family: 'Garamond', serif;
+            text-transform: uppercase;
         }
 
         .certificate-body p {
-            font-size: 1.5rem;
-            margin: 10px 0;
-            color: #666;
+            font-size: 1.4rem;
+            margin: 15px 0;
+            color: #555;
         }
 
         .certificate-body h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: bold;
-            margin: 10px 0;
-            color: #333;
+            margin: 20px 0;
+            color: #222;
+            font-family: 'Garamond', serif;
+            text-decoration: underline;
         }
 
         .certificate-footer {
             display: flex;
             justify-content: space-between;
-            margin-top: 40px;
+            align-items: flex-end; /* Align items to the bottom */
+            margin-top: 60px;
+            padding: 0 50px;
         }
 
-        .certificate-footer .signature {
-            width: 45%;
+        .signature-box {
             text-align: center;
+            width: 40%;
         }
 
-        .certificate-footer .signature p {
-            margin: 10px 0;
+        .signature-line {
+            width: 100%;
+            height: 2px;
+            background-color: black;
+            margin: 10px auto;
+        }
+
+        .signature-text {
             font-size: 1.2rem;
-            color: #666;
+            font-weight: bold;
+            color: #333;
         }
 
-        .certificate-footer .signature-line {
-            border-top: 1px solid black;
-            margin-top: 30px;
-            padding-top: 5px;
+        .gold-seal {
+            position: absolute;
+            top: 40%;
+            right: 20px;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, gold 40%, #d4af37 80%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
 <body>
     <div class="certificate-container">
         <div class="certificate-header">
-            <h1>Certificate of Salesmenship</h1>
+            <h1>Certificate of Salesmanship</h1>
         </div>
         <div class="certificate-body">
             <p>This is to certify that</p>
@@ -88,15 +107,18 @@
             <p>We appreciate your commitment to excellence and your contribution to sustainable farming practices.</p>
         </div>
         <div class="certificate-footer">
-            <div class="signature">
-                <p>______________________________</p>
-                <p class="signature-line">Signature</p>
+            <!-- Date on the left -->
+            <div class="signature-box" style="text-align: left;">
+                <p class="signature-text">Date: 2022/10/10</p>
+                <div class="signature-line"></div>
             </div>
-            <div class="signature">
-                <p>______________________________</p>
-                <p class="signature-line">Date</p>
+            <!-- Signature on the right -->
+            <div class="signature-box" style="text-align: right;">
+                <p class="signature-text">Authorized Signature</p>
+                <div class="signature-line"></div>
             </div>
         </div>
+        <div class="gold-seal">Official</div>
     </div>
 </body>
 </html>
