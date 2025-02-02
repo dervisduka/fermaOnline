@@ -311,7 +311,7 @@
 
 
 
-        <!-- Basket Modal -->
+    <!-- Basket Modal -->
     <div class="modal fade" id="basketModal" tabindex="-1" aria-labelledby="basketModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -335,78 +335,129 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    let cart = [];
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let cart = [];
 
-    function addToCart(event) {
-        const cardBody = event.target.closest('.card-body');
+            function addToCart(event) {
+                const cardBody = event.target.closest('.card-body');
 
-        const product = {
-            id: cardBody.querySelector('.product-id').textContent,
-            description: cardBody.querySelector('.card-title').textContent,
-            price: cardBody.querySelector('.card-text').textContent.replace('Price: $', ''),
-            image: cardBody.closest('.card').querySelector('.product-image').src
-        };
+                const product = {
+                    id: cardBody.querySelector('.product-id').textContent,
+                    description: cardBody.querySelector('.card-title').textContent,
+                    price: cardBody.querySelector('.card-text').textContent.replace('Price: $', ''),
+                    image: cardBody.closest('.card').querySelector('.product-image').src,
+                    stock: 1
+                };
 
-        const isProductInCart = cart.some(item => item.id === product.id);
+                const existingProduct = cart.find(item => item.id === product.id);
 
-        if (!isProductInCart) {
-            cart.push(product);
-            console.log('Product added to cart:', product);
-            alert(`Added to cart: ${product.description}`);
-        } else {
-            console.log('Product is already in the cart:', product);
-            alert(`"${product.description}" is already in your cart.`);
-        }
-
-        console.log('Current cart:', cart);
-    }
-
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', addToCart);
-    });
+                if (!existingProduct) {
+                    cart.push(product);
+                }
 
 
-    function updateBasketModal() {
-        const basketItems = document.getElementById('basketItems');
-        const emptyBasketMessage = document.getElementById('emptyBasketMessage');
+                updateBasketModal();
+            }
 
-        basketItems.innerHTML = '';
+            function updateBasketModal() {
+                const basketItems = document.getElementById('basketItems');
+                let emptyBasketMessage = document.getElementById('emptyBasketMessage');
 
-        if (cart.length === 0) {
-            emptyBasketMessage.style.display = 'block';
-        } else {
-            emptyBasketMessage.style.display = 'none';
+                if (!basketItems) {
+                    return;
+                }
 
-            cart.forEach((item, index) => {
-                const itemHTML = `
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="${item.image}" class="img-fluid rounded-start" alt="${item.description}" style="max-width: 100px;">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">${item.description}</h5>
-                                    <p class="card-text">Price: $${item.price}</p>
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Remove</button>
+                basketItems.innerHTML = '';
+
+                if (cart.length === 0) {
+                    if (!emptyBasketMessage) {
+                        emptyBasketMessage = document.createElement('p');
+                        emptyBasketMessage.id = 'emptyBasketMessage';
+                        emptyBasketMessage.classList.add('text-center');
+                        emptyBasketMessage.textContent = 'Your basket is empty.';
+                        basketItems.appendChild(emptyBasketMessage);
+                    } else {
+                        emptyBasketMessage.style.display = 'block';
+                    }
+                } else {
+                    if (emptyBasketMessage) emptyBasketMessage.style.display = 'none';
+
+                    cart.forEach((item, index) => {
+                        const itemHTML = `
+                            <div class="card mb-3">
+                                <div class="row g-0">
+                                    <div class="col-md-2">
+                                        <img src="${item.image}" class="img-fluid rounded-start" alt="${item.description}" style="max-width: 100px;">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="card-body row">
+                                            <p class="card-text col-md-3" style="margin-top: 1em">Price: $${item.price}</p>
+                                            <button type="button" class="btn btn-success btn-sm col-md-2 increase-stock" data-index="${index}">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                            <p class="col-md-2 stock-value" style="margin-top: 1em">Stock: ${item.stock}</p>
+                                            <button type="button" class="btn btn-warning btn-sm col-md-2 decrease-stock" data-index="${index}">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <div class="col-md-1"></div>
+                                            <button type="button" class="btn btn-danger btn-sm remove-from-cart col-md-2" data-index="${index}">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                `;
-                basketItems.innerHTML += itemHTML;
+                        `;
+                        basketItems.innerHTML += itemHTML;
+                    });
+
+                    document.querySelectorAll('.increase-stock').forEach(button => {
+                        button.addEventListener('click', function () {
+                            const index = parseInt(button.getAttribute('data-index'));
+                            cart[index].stock++;
+                            updateBasketModal();
+                        });
+                    });
+
+                    document.querySelectorAll('.decrease-stock').forEach(button => {
+                        button.addEventListener('click', function () {
+                            const index = parseInt(button.getAttribute('data-index'));
+                            if (cart[index].stock > 1) {
+                                cart[index].stock--;
+                                updateBasketModal();
+                            }
+                        });
+                    });
+
+                    document.querySelectorAll('.remove-from-cart').forEach(button => {
+                        button.addEventListener('click', function () {
+                            const index = parseInt(button.getAttribute('data-index'));
+                            removeFromCart(index);
+                        });
+                    });
+                }
+            }
+
+            function removeFromCart(index) {
+                cart.splice(index, 1);
+                updateBasketModal();
+            }
+
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', addToCart);
             });
-        }
-    }
 
-    function removeFromCart(index) {
-        cart.splice(index, 1); 
-        updateBasketModal(); 
-        console.log('Item removed. Updated cart:', cart);
-    }
+            const basketButton = document.querySelector('[data-bs-target="#basketModal"]');
+            if (basketButton) {
+                basketButton.addEventListener('click', updateBasketModal);
+            }
 
-    document.querySelector('[data-bs-target="#basketModal"]').addEventListener('click', updateBasketModal);
-</script>
+            const basketModal = document.getElementById('basketModal');
+            if (basketModal) {
+                basketModal.addEventListener('show.bs.modal', updateBasketModal);
+            }
+        });
+    </script>
 </body>
 </html>
