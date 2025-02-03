@@ -95,6 +95,7 @@
         margin-top: 0;
         }
     </style>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 @if(!$data['is_admin'])
@@ -327,7 +328,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Checkout</button>
+                    <button type="button" class="btn btn-primary" onclick="buyBasket()">Checkout</button>
                 </div>
             </div>
         </div>
@@ -336,9 +337,55 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            let cart = [];
+        let cart = [];
 
+        async function buyBasket() {
+            if (cart.length === 0) {
+                console.log("Empty cart");
+                return;
+            }
+
+            let guid_id = @json($data['guid_id']);
+
+            let csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
+            if (!csrfTokenElement) {
+                console.error("CSRF token meta tag is missing.");
+                return;
+            }
+
+            let csrfToken = csrfTokenElement.getAttribute("content");
+            const total = cart.reduce((sum, item) => sum + (parseFloat(item.price) * item.stock), 0);
+
+            const requestData = {
+                cart: cart,
+                total: total
+            };
+
+            try {
+                const response = await fetch(`/mainPage/checkout/${guid_id}`, { // Use absolute path
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content") // Laravel CSRF token
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert("Checkout successful!");
+                    cart = []; // Clear cart after successful checkout
+                } else {
+                    alert("Checkout failed: " + result.message);
+                }
+            } catch (error) {
+                console.error("Error during checkout:", error);
+            }
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
             function addToCart(event) {
                 const cardBody = event.target.closest('.card-body');
 
@@ -355,7 +402,6 @@
                 if (!existingProduct) {
                     cart.push(product);
                 }
-
 
                 updateBasketModal();
             }
@@ -459,5 +505,6 @@
             }
         });
     </script>
+
 </body>
 </html>

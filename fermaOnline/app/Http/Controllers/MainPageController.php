@@ -8,6 +8,9 @@ use App\Models\Produkt;
 use Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Transaksion;
+use App\Models\DetajeTransaksioni;
+use Illuminate\Support\Facades\DB;
 
 class MainPageController extends Controller
 {
@@ -66,4 +69,50 @@ class MainPageController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
+
+    public function checkout(Request $request, $guid_id)
+{
+    DB::beginTransaction();
+    try {
+        $user = Perdorues::where('guid_id', $guid_id)->first();
+
+        if (!$user) {
+            return response()->json(['success' => false, 'message' => 'User not found.']);
+        }
+
+        if ($user->balanca < $request->total) {
+            return response()->json(['success' => false, 'message' => 'Insufficient balance.']);
+        }
+
+        // Deduct the total from user's balance
+        $user->balanca -= $request->total;
+        $user->save();
+
+        // Create the transaction
+        $transaction = Transaksion::create([
+            'id_perdoruesi' => $guid_id,
+            'totali' => $request->total,
+            'data_transaksionit' => now(),
+            'created_at' => now()
+        ]);
+
+        // Insert transaction details
+        foreach ($request->cart as $item) {
+            DetajeTransaksioni::create([
+                'id_produkti' => $item['id'],
+                'id_transaksioni' => $transaction->id,
+                'sasia' => $item['stock'],
+                'shuma' => $item['price'] * $item['stock'],
+                'created_at' => now()
+            ]);
+        }
+
+        DB::commit();
+        return response()->json(['success' => true]);
+
+    } catch (\Exception $e) {
+        DB::rollback();
+        return response()->json(['success' => false, 'message' => $e->getMessage()]);
+    }
+}
 }
