@@ -25,4 +25,10 @@ class Transaksion extends Model
     {
         return $this->belongsTo(Perdorues::class, 'id_perdoruesi', 'guid_id');
     }
+
+    
+    public function detajeTransaksioni()
+    {
+        return $this->hasMany(DetajeTransaksioni::class, 'id_transaksioni', 'id');
+    }
 }

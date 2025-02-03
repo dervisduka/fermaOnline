@@ -37,60 +37,76 @@
         }
 
         .content {
-            padding-top: 56px; /* Ensure content starts below the navbar */
-            /* You can adjust this value based on the height of your navbar */
+            padding-top: 56px;
+            background-color: #F3FFF7;
         }
 
-        .profile-container {
+        .transaction-card {
             background-color: #fff;
-            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-            width: 300px;
-            margin: auto;
-        }
-
-        .profile-container h2 {
-            text-align: center;
             margin-bottom: 20px;
+            padding: 20px;
+            transition: transform 0.3s ease-in-out;
         }
 
-        .profile-container p {
-            text-align: center;
-            margin-bottom: 10px;
+        .transaction-card:hover {
+            transform: translateY(-5px);
         }
 
-        .profile-container a {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-            text-decoration: none;
-            color: #4CAF50;
+        .transaction-header {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #f1f1f1;
+            padding-bottom: 10px;
         }
 
-        .profile-container input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
+        .transaction-header h5 {
+            margin-bottom: 5px;
+        }
+
+        .transaction-header small {
+            font-size: 0.875rem;
+            color: #888;
+        }
+
+        .transaction-body {
+            margin-bottom: 15px;
+        }
+
+        .transaction-body p {
+            margin-bottom: 8px;
+        }
+
+        .transaction-image {
+            max-width: 100%;
+            max-height: 150px;
+            object-fit: contain;
             border-radius: 5px;
-            box-sizing: border-box;
         }
 
-        .profile-container input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            border: none;
+        .transaction-footer {
+            text-align: right;
+        }
+
+        .transaction-footer .btn {
             background-color: #4CAF50;
             color: white;
             border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
+            padding: 8px 12px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
         }
 
-        .profile-container input[type="submit"]:hover {
+        .transaction-footer .btn:hover {
             background-color: #45a049;
         }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
         .navbar-nav .nav-item {
         margin-top: 0;
         }
@@ -138,14 +154,45 @@
 <div class="spacer"></div>
 
 <div class="content">
-    <!-- Your content goes here -->
-    <div class="profile-container">
-        <!-- Profile content -->
-        <h2>User Transcations</h2>
-        <p>User Transcations information goes here.</p>
-        <!-- Add more profile-related content -->
+    <div class="container">
+        @foreach ($data['transactions'] as $group)
+            <div class="transaction-group mb-4">
+                <div class="transaction-header">
+                    <h3 class="text-success">Total: <strong>{{ $group['total'] }}$</strong></h3>
+                    <small class="text-muted">Created At: {{ $group['created_at'] }}</small>
+                </div>
+
+                <div class="transaction-body">
+                    <ul class="list-unstyled">
+                        @foreach ($group['transactions'] as $transaction)
+                            <li class="transaction-card">
+                                <div class="transaction-header">
+                                    <h5>Transaction Details</h5>
+                                </div>
+                                
+                                <div class="transaction-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p><strong>Amount:</strong> {{ $transaction->shuma }}$</p>
+                                            <p><strong>Quantity:</strong> {{ $transaction->sasia }}</p>
+                                            <p><strong>Price per product:</strong> {{ ($transaction->shuma/$transaction->sasia) }}$</p>
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                            <img src="{{ asset($transaction->foto_path) }}" alt="Transaction Image" class="transaction-image">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <hr>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        @endforeach
     </div>
 </div>
+
+
 
 @else
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #92db87; padding-top: 0; padding-bottom: 0;">
@@ -191,12 +238,41 @@
 <div class="spacer"></div>
 
 <div class="content">
-    <!-- Your content goes here -->
-    <div class="profile-container">
-        <!-- Profile content -->
-        <h2>ALL User Transcations</h2>
-        <p>ALL User Transcations information goes here.</p>
-        <!-- Add more profile-related content -->
+    <div class="container">
+        @foreach ($data['transactions'] as $group)
+            <div class="transaction-group mb-4">
+                <div class="transaction-header">
+                    <h3 class="text-success">Total: <strong>{{ $group['total'] }}$</strong></h3>
+                    <small class="text-muted">Created At: {{ $group['created_at'] }}</small>
+                </div>
+
+                <div class="transaction-body">
+                    <ul class="list-unstyled">
+                        @foreach ($group['transactions'] as $transaction)
+                            <li class="transaction-card">
+                                <div class="transaction-header">
+                                    <h5>Transaction Details</h5>
+                                </div>
+                                
+                                <div class="transaction-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p><strong>Amount:</strong> {{ $transaction->shuma }}$</p>
+                                            <p><strong>Quantity:</strong> {{ $transaction->sasia }}</p>
+                                            <p><strong>Price per product:</strong> {{ ($transaction->shuma/$transaction->sasia) }}$</p>
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                            <img src="{{ asset($transaction->foto_path) }}" alt="Transaction Image" class="transaction-image">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <hr>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        @endforeach
     </div>
 </div>
 
