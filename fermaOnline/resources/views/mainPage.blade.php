@@ -150,6 +150,7 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">{{ $produkt->pershkrim_produkti }}</h5>
                         <p class="card-text">Price: ${{ $produkt->cmimi }}</p>
+                        <p class="card-text">Lloji: {{ $produkt->lloji }}</p>
                         <p class="d-none product-id">{{ $produkt->id }}</p> <!-- Hidden product ID -->
                         <div class="d-flex justify-content-between align-items-center row">
                             <div class="col-md-10"></div>

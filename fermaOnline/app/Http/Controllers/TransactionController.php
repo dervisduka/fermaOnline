@@ -25,7 +25,7 @@ class TransactionController extends Controller
         // Group transactions by 'guid_id'
         $groupedTransactions = $records->groupBy('id')->map(function ($transactionGroup) {
             // Get the total amount for each group and the first transaction's created_at date
-            $totalAmount = $transactionGroup->sum('totali');
+            $totalAmount = $transactionGroup->sum('shuma');
             $createdAt = $transactionGroup->first()->created_at; // Assuming created_at is the same for all in the group
     
             // Return a grouped result with the sum and creation date, without the 'guid_id'

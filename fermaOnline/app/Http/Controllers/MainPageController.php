@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Perdorues;
-use App\Models\Produkt;
+use App\Models\VProduct;
 use Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +16,7 @@ class MainPageController extends Controller
 {
     public function show(string $guid_id){
         $user = Perdorues::where('guid_id', $guid_id)->firstOrFail();
-        $produkt = Produkt::all();
+        $produkt = VProduct::all();
         $data = [
             'guid_id' => $guid_id,
             'username' => $user->username,
