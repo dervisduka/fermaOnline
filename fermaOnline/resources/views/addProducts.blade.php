@@ -147,12 +147,19 @@
         <form action="{{ route('addProduct', ['guid_id' => $data['guid_id']]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
+            <label for="kafshe_id" class="form-label">Animal</label>
+            <select class="form-select" id="kafshe_id" name="kafshe_id" onchange="fetchProductTypes(this.value)">
+                <option value="">Select Animal</option>
+                @foreach($data['kafshet'] as $kafshet)
+                    <option value="{{ $kafshet->id }}">{{ $kafshet->lloji }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mb-3">
             <label for="lloji_id" class="form-label">Product Type</label>
             <select class="form-select" id="lloji_id" name="lloji_id">
                 <option value="">Select Product Type</option>
-                @foreach($data['productTypes'] as $productType)
-                    <option value="{{ $productType->id }}">{{ $productType->lloji_produktit }}</option>
-                @endforeach
             </select>
         </div>
         <div class="mb-3">
@@ -194,5 +201,31 @@
 </div>
 @endif
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function fetchProductTypes(kafsheId) {
+            if (kafsheId) {
+                $.ajax({
+                url: `{{ url('addProduct/get-product-types') }}/${kafsheId}`,
+                type: 'GET',
+                success: function (data) {
+                    let productTypeSelect = $('#lloji_id');
+                    productTypeSelect.empty();
+                    productTypeSelect.append('<option value="">Select Product Type</option>');
+                    $.each(data, function (key, value) {
+                        productTypeSelect.append(`<option value="${value.id}">${value.lloji_produktit}</option>`);
+                    });
+                },
+                error: function () {
+                    alert('Failed to fetch product types. Please try again.');
+                }
+            });
+            } else {
+                $('#lloji_id').empty().append('<option value="">Select Product Type</option>');
+            }
+        }
+    </script>
+
 </body>
 </html>

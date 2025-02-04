@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Perdorues;
 use App\Models\LlojProdukti;
 use App\Models\Produkt;
+use App\Models\Kafshe;
 use Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +22,7 @@ class AddProductsController extends Controller
             'username' => $user->username,
             'email' => $user->email,
             'is_admin' => $user->is_admin,
-            'productTypes' => LlojProdukti::all(),
+            'kafshet' => Kafshe::all(),
         ];
         return view('addProducts', ['data' => $data]);
     }
@@ -61,5 +62,11 @@ class AddProductsController extends Controller
 
         return redirect()->route('mainPage', ['guid_id' => $guid_id])->with('success', 'Product added successfully');
 
+    }
+
+    public function getProductTypes($kafsheId)
+    {
+        $productTypes = LlojProdukti::where('id_kafshe', $kafsheId)->get();
+        return response()->json($productTypes);
     }
 }

@@ -53,3 +53,7 @@ Route::get('/downloadCertificate/{guid_id}', [CompanyDescriptionController::clas
 Route::post('/mainPage/{guid_id}/add-to-wallet', [MainPageController::class, 'addToWallet'])->name('add.to.wallet');
 
 Route::post('mainPage/checkout/{guid_id}', [MainPageController::class, 'checkout']);
+
+Route::get('addProduct/get-product-types/{kafsheId}', [AddProductsController::class, 'getProductTypes']);
+
+
