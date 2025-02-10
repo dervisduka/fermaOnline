@@ -126,24 +126,24 @@
         <div class="collapse navbar-collapse" id="navbarNav" style="padding-left: 0.5rem;">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{route('mainPage', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-home"></i> Home</a>
+                    <a class="nav-link" href="{{route('mainPage', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-home"></i> Faqja kryesore</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('companyDescription', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-info-circle"></i> About</a>
+                    <a class="nav-link" href="{{route('companyDescription', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-info-circle"></i> Rreth</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('animal', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-paw"></i> Animals</a>
+                    <a class="nav-link" href="{{route('animal', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-paw"></i> Kafshet</a>
                 </li>
                 <!-- Add more navigation links as needed -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white; line-height: 1; margin-right: 1rem;">
-                        <i class="fas fa-user"></i> Profile
+                        <i class="fas fa-user"></i> Profili
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ route('profile', ['guid_id' => $data['guid_id']]) }}"><i class="fas fa-address-card"></i> My Data</a></li>
-                        <li><a class="dropdown-item" href="{{route('transaction', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-chart-line"></i> My Transactions</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-wallet"></i> Add Funds</a></li>
-                        <li><a class="dropdown-item" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+                        <li><a class="dropdown-item" href="{{ route('profile', ['guid_id' => $data['guid_id']]) }}"><i class="fas fa-address-card"></i> Te dhenat e mia</a></li>
+                        <li><a class="dropdown-item" href="{{route('transaction', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-chart-line"></i> Transaksionet e mia</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#walletModal"><i class="fas fa-wallet"></i> Shto Fonde</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="clearCartAndLogout()"><i class="fas fa-sign-out-alt"></i> Dil</a></li>
                     </ul>
                 </li>
             </ul>
@@ -159,7 +159,7 @@
             <div class="transaction-group mb-4">
                 <div class="transaction-header">
                     <h3 class="text-success">Total: <strong>{{ $group['total'] }}$</strong></h3>
-                    <small class="text-muted">Created At: {{ $group['created_at'] }}</small>
+                    <small class="text-muted">Krijuar me: {{ $group['created_at'] }}</small>
                 </div>
 
                 <div class="transaction-body">
@@ -173,12 +173,12 @@
                                 <div class="transaction-body">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <p><strong>Amount:</strong> {{ $transaction->shuma }}$</p>
-                                            <p><strong>Quantity:</strong> {{ $transaction->sasia }}</p>
-                                            <p><strong>Price per product:</strong> {{ ($transaction->shuma/$transaction->sasia) }}$</p>
+                                            <p><strong>Shuma:</strong> {{ $transaction->shuma }}$</p>
+                                            <p><strong>Sasia:</strong> {{ $transaction->sasia }}</p>
+                                            <p><strong>Çmimi per produkt:</strong> {{ ($transaction->shuma/$transaction->sasia) }}$</p>
                                         </div>
                                         <div class="col-md-6 text-center">
-                                            <img src="{{ asset($transaction->foto_path) }}" alt="Transaction Image" class="transaction-image">
+                                            <img src="{{ asset($transaction->foto_path) }}" alt="Imazhi i transaksionit" class="transaction-image">
                                         </div>
                                     </div>
                                 </div>
@@ -208,27 +208,27 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white; line-height: 1; margin-right: 1rem;">
-                        <i class="fas fa-clipboard-list"></i> Product Management
+                        <i class="fas fa-clipboard-list"></i> Menaxhimi i Produkteve
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                        <li><a class="dropdown-item" href="{{route('mainPage', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-business-time"></i> Stock Management</a></li>
-                        <li><a class="dropdown-item" href="{{route('addProducts', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-plus"></i> Add Products</a></li>
+                        <li><a class="dropdown-item" href="{{route('mainPage', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-business-time"></i> Menaxhimi i Stokut</a></li>
+                        <li><a class="dropdown-item" href="{{route('addProducts', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-plus"></i> Shto Produkte</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white; line-height: 1; margin-right: 1rem;">
-                        <i class="fas fa-store-alt"></i> Animal Management
+                        <i class="fas fa-store-alt"></i> Menaxhimi i Kafsheve
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                        <li><a class="dropdown-item" href="{{route('animal', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-paw"></i>Animal View </a></li>
-                        <li><a class="dropdown-item" href="{{route('addAnimal', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-plus"></i> Add Animals</a></li>
+                        <li><a class="dropdown-item" href="{{route('animal', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-paw"></i> Faqja e Kafsheve</a></li>
+                        <li><a class="dropdown-item" href="{{route('addAnimal', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-plus"></i> Shto Kafshe</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('transaction', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-chart-line"></i> Transactions History</a>
+                    <a class="nav-link" href="{{route('transaction', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-chart-line"></i> Historiku i Transaksioneve</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  style="color: white; line-height: 1; margin-right: 1rem;" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                    <a class="nav-link"  style="color: white; line-height: 1; margin-right: 1rem;" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Dil</a>
                 </li>
             </ul>
         </div>
@@ -243,7 +243,7 @@
             <div class="transaction-group mb-4">
                 <div class="transaction-header">
                     <h3 class="text-success">Total: <strong>{{ $group['total'] }}$</strong></h3>
-                    <small class="text-muted">Created At: {{ $group['created_at'] }}</small>
+                    <small class="text-muted">Krijuar me: {{ $group['created_at'] }}</small>
                 </div>
 
                 <div class="transaction-body">
@@ -251,18 +251,18 @@
                         @foreach ($group['transactions'] as $transaction)
                             <li class="transaction-card">
                                 <div class="transaction-header">
-                                    <h5>Transaction Details</h5>
+                                    <h5>Detajet e transaksionit</h5>
                                 </div>
                                 
                                 <div class="transaction-body">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <p><strong>Amount:</strong> {{ $transaction->shuma }}$</p>
-                                            <p><strong>Quantity:</strong> {{ $transaction->sasia }}</p>
-                                            <p><strong>Price per product:</strong> {{ ($transaction->shuma/$transaction->sasia) }}$</p>
+                                            <p><strong>Shuma:</strong> {{ $transaction->shuma }}$</p>
+                                            <p><strong>Sasia:</strong> {{ $transaction->sasia }}</p>
+                                            <p><strong>Çmimi per produkt:</strong> {{ ($transaction->shuma/$transaction->sasia) }}$</p>
                                         </div>
                                         <div class="col-md-6 text-center">
-                                            <img src="{{ asset($transaction->foto_path) }}" alt="Transaction Image" class="transaction-image">
+                                            <img src="{{ asset($transaction->foto_path) }}" alt="Imazhi i transaksionit" class="transaction-image">
                                         </div>
                                     </div>
                                 </div>
@@ -277,6 +277,70 @@
 </div>
 
 @endif
+            <div class="modal fade" id="walletModal" tabindex="-1" aria-labelledby="walletModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="walletModalLabel">Wallet</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <form action="{{ route('add.to.wallet', ['guid_id' => $data['guid_id']]) }}" method="POST">
+                            @csrf
+                            <!-- Card Image Placeholder -->
+                            <div class="mb-3 text-center">
+                                <img src="{{ asset('images/Visa-Mastercard.png') }}" alt="Karta" class="img-fluid">
+                            </div>
+                            
+                            <!-- Name & Amount -->
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="fullName" class="form-label">Emer Mbiemer</label>
+                                    <input type="text" class="form-control" id="fullName" placeholder="Full Name">
+                                </div>
+                                <div class="col">
+                                    <label for="amount" class="form-label">Shuma</label>
+                                    <input type="text" class="form-control" id="amount" name="amount" placeholder="Amount">
+                                </div>
+                            </div>
+                            
+                            <!-- Card Number -->
+                            <div class="mb-3">
+                                <label for="cardNumber" class="form-label">10 shifrat</label>
+                                <input type="text" class="form-control" id="cardNumber" placeholder="Card Number">
+                            </div>
+
+                            <!-- Expiry Date & CVV -->
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="expiryDate" class="form-label">Expiry Date</label>
+                                    <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY">
+                                </div>
+                                <div class="col">
+                                    <label for="cvv" class="form-label">3 shifrat pas</label>
+                                    <input type="text" class="form-control" id="cvv" placeholder="CVV">
+                                </div>
+                            </div>
+                            
+                            <!-- Transfer Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Transfero</button>
+                            </div>
+                        </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function clearCartAndLogout() {
+
+        sessionStorage.removeItem('cart'); 
+        localStorage.removeItem('cart');  
+
+        window.location.href = '/logout'; 
+        }
+    </script>
 </body>
 </html>

@@ -98,23 +98,23 @@
 <body>
     <div class="certificate-container">
         <div class="certificate-header">
-            <h1>Certificate of Salesmanship</h1>
+            <h1>Certificate Shitjeje</h1>
         </div>
         <div class="certificate-body">
-            <p>This is to certify that</p>
+            <p>Kjo eshte per te certifikuar se</p>
             <h2>FermaOnline</h2>
-            <p>has been recognized for outstanding quality and service in providing farm-fresh products.</p>
-            <p>We appreciate your commitment to excellence and your contribution to sustainable farming practices.</p>
+            <p>njihet per kualitetin dhe sherbimin ne ofrimin e produkteve te fermes.</p>
+            <p>Ne vlerësojmë angazhimin dhe kontributin tuaj në praktikat e qëndrueshme bujqësore.</p>
         </div>
         <div class="certificate-footer">
             <!-- Date on the left -->
             <div class="signature-box" style="text-align: left;">
-                <p class="signature-text">Date: 2022/10/10</p>
+                <p class="signature-text">Data: 2022/10/10</p>
                 <div class="signature-line"></div>
             </div>
             <!-- Signature on the right -->
             <div class="signature-box" style="text-align: right;">
-                <p class="signature-text">Authorized Signature</p>
+                <p class="signature-text">Firma</p>
                 <div class="signature-line"></div>
             </div>
         </div>
