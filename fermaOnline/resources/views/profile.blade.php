@@ -110,24 +110,24 @@
         <div class="collapse navbar-collapse" id="navbarNav" style="padding-left: 0.5rem;">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{route('mainPage', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-home"></i> Home</a>
+                    <a class="nav-link" href="{{route('mainPage', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-home"></i> Faqja kryesore</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('companyDescription', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-info-circle"></i> About</a>
+                    <a class="nav-link" href="{{route('companyDescription', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-info-circle"></i> Rreth</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('animal', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-paw"></i> Animals</a>
+                    <a class="nav-link" href="{{route('animal', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-paw"></i> Kafshet</a>
                 </li>
                 <!-- Add more navigation links as needed -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white; line-height: 1; margin-right: 1rem;">
-                        <i class="fas fa-user"></i> Profile
+                        <i class="fas fa-user"></i> Profili
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ route('profile', ['guid_id' => $data['guid_id']]) }}"><i class="fas fa-address-card"></i> My Data</a></li>
-                        <li><a class="dropdown-item" href="{{route('transaction', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-chart-line"></i> My Transactions</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-wallet"></i> Add Funds</a></li>
-                        <li><a class="dropdown-item" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+                        <li><a class="dropdown-item" href="{{ route('profile', ['guid_id' => $data['guid_id']]) }}"><i class="fas fa-address-card"></i> Te dhenat e mia</a></li>
+                        <li><a class="dropdown-item" href="{{route('transaction', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-chart-line"></i> Transaksionet e mia</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#walletModal"><i class="fas fa-wallet"></i> Shto Fonde</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="clearCartAndLogout()"><i class="fas fa-sign-out-alt"></i> Dil</a></li>
                     </ul>
                 </li>
             </ul>
@@ -141,7 +141,7 @@
             <div class="col-md-10">
                 <div class="card">
                 <div class="card-header bg-lightgrey text-green">
-                    <h4 class="mb-0">Profile Information</h4>
+                    <h4 class="mb-0">Informacion rreth profilit</h4>
                 </div>
                     <div class="card-body">
                         <div class="row">
@@ -159,19 +159,19 @@
                                     </div>
                                 </div>
                                 <div class="profile-info row mb-3">
-                                    <label for="dob" class="col-4"><strong>Date of Birth:</strong></label>
+                                    <label for="dob" class="col-4"><strong>Datelindja:</strong></label>
                                     <div class="col-8">
                                         <input type="date" id="dob" class="form-control" value="{{$data['dob']}}" readonly style="pointer-events: none;">
                                     </div>
                                 </div>
                                                                 <div class="profile-info row mb-3">
-                                    <label for="phone" class="col-4"><strong>Phone Number:</strong></label>
+                                    <label for="phone" class="col-4"><strong>Numri i telefonit:</strong></label>
                                     <div class="col-8">
                                         <input type="tel" id="phone" class="form-control" value="{{$data['phoneNumber']}}" readonly style="pointer-events: none;">
                                     </div>
                                 </div>
                                 <div class="profile-info row mb-3">
-                                    <label for="address" class="col-4"><strong>Address:</strong></label>
+                                    <label for="address" class="col-4"><strong>Adresa:</strong></label>
                                     <div class="col-8">
                                         <input type="text" id="address" class="form-control" value="{{$data['address']}}" readonly style="pointer-events: none;">
                                     </div>
@@ -179,7 +179,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="profile-info row mb-3">
-                                    <label for="fullname" class="col-4"><strong>Full Name:</strong></label>
+                                    <label for="fullname" class="col-4"><strong>Emri i plote:</strong></label>
                                     <div class="col-8">
                                         <input type="text" id="fullname" class="form-control" value="{{$data['name']}} {{$data['surname']}}" readonly style="pointer-events: none;">
                                     </div>
@@ -192,7 +192,7 @@
                                 </div>
                             </div>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
-                                Change Password
+                                Ndrysho Fjalekalim
                             </button>
                         </div>
                     </div>
@@ -207,31 +207,86 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
+                <h5 class="modal-title" id="changePasswordModalLabel">Ndrysho Fjalekalimin</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
             <form id="changePasswordForm" action="{{ route('changePassword', ['guid_id' => $data['guid_id']]) }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="oldPassword" class="form-label">Old Password</label>
+                        <label for="oldPassword" class="form-label">Fjalekalimi i vjeter</label>
                         <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
                     </div>
                     <div class="mb-3">
-                        <label for="newPassword" class="form-label">New Password</label>
+                        <label for="newPassword" class="form-label">Fjalekalimi i ri</label>
                         <input type="password" class="form-control" id="newPassword" name="newPassword" required>
                     </div>
                     <div class="mb-3">
-                        <label for="newPasswordConfirmation" class="form-label">Confirm New Password</label>
+                        <label for="newPasswordConfirmation" class="form-label">Konfirmo Fjalekalimin</label>
                         <input type="password" class="form-control" id="newPasswordConfirmation" name="newPasswordConfirmation" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="submit" class="btn btn-primary" style="float:right;">Ruaj</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
+<div class="modal fade" id="walletModal" tabindex="-1" aria-labelledby="walletModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="walletModalLabel">Wallet</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <form action="{{ route('add.to.wallet', ['guid_id' => $data['guid_id']]) }}" method="POST">
+                            @csrf
+                            <!-- Card Image Placeholder -->
+                            <div class="mb-3 text-center">
+                                <img src="{{ asset('images/Visa-Mastercard.png') }}" alt="Karta" class="img-fluid">
+                            </div>
+                            
+                            <!-- Name & Amount -->
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="fullName" class="form-label">Emer Mbiemer</label>
+                                    <input type="text" class="form-control" id="fullName" placeholder="Full Name">
+                                </div>
+                                <div class="col">
+                                    <label for="amount" class="form-label">Shuma</label>
+                                    <input type="text" class="form-control" id="amount" name="amount" placeholder="Amount">
+                                </div>
+                            </div>
+                            
+                            <!-- Card Number -->
+                            <div class="mb-3">
+                                <label for="cardNumber" class="form-label">10 shifrat</label>
+                                <input type="text" class="form-control" id="cardNumber" placeholder="Card Number">
+                            </div>
+
+                            <!-- Expiry Date & CVV -->
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="expiryDate" class="form-label">Expiry Date</label>
+                                    <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY">
+                                </div>
+                                <div class="col">
+                                    <label for="cvv" class="form-label">3 shifrat pas</label>
+                                    <input type="text" class="form-control" id="cvv" placeholder="CVV">
+                                </div>
+                            </div>
+                            
+                            <!-- Transfer Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Transfero</button>
+                            </div>
+                        </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -252,5 +307,14 @@
 
 @endif
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function clearCartAndLogout() {
+
+        sessionStorage.removeItem('cart'); 
+        localStorage.removeItem('cart');  
+
+        window.location.href = '/logout'; 
+        }
+    </script>
 </body>
 </html>

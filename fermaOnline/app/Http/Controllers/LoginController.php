@@ -19,7 +19,7 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        if($validator->fails()) return redirect()->route('login')->with('required', 'All fields are required');
+        if($validator->fails()) return redirect()->route('login')->with('required', 'Te gjitha fushat jane te detyrueshme');
 
         $credentials = $request->only('username', 'password');
         if(Auth::attempt($credentials)){
@@ -27,7 +27,7 @@ class LoginController extends Controller
             session(['guid_id' => $user->guid_id]);
             return redirect()->intended(route('mainPage', ['guid_id' => Session::get('guid_id')]));
         }else {
-            return redirect()->route('login')->with('wrong_credentials', 'Incorrect username or password');
+            return redirect()->route('login')->with('wrong_credentials', 'Username ose fjalekalim te pasakte');
         }
     }
 }

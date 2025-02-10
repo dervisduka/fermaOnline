@@ -97,27 +97,27 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white; line-height: 1; margin-right: 1rem;">
-                        <i class="fas fa-clipboard-list"></i> Product Management
+                        <i class="fas fa-clipboard-list"></i> Menaxhimi i Produkteve
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                        <li><a class="dropdown-item" href="{{route('mainPage', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-business-time"></i> Stock Management</a></li>
-                        <li><a class="dropdown-item" href="{{route('addProducts', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-plus"></i> Add Products</a></li>
+                        <li><a class="dropdown-item" href="{{route('mainPage', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-business-time"></i> Menaxhimi i Stokut</a></li>
+                        <li><a class="dropdown-item" href="{{route('addProducts', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-plus"></i> Shto Produkte</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white; line-height: 1; margin-right: 1rem;">
-                        <i class="fas fa-store-alt"></i> Animal Management
+                        <i class="fas fa-store-alt"></i> Menaxhimi i Kafsheve
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                        <li><a class="dropdown-item" href="{{route('animal', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-paw"></i>Animal View </a></li>
-                        <li><a class="dropdown-item" href="{{route('addAnimal', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-plus"></i> Add Animals</a></li>
+                        <li><a class="dropdown-item" href="{{route('animal', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-paw"></i>Faqja e Kafsheve </a></li>
+                        <li><a class="dropdown-item" href="{{route('addAnimal', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-plus"></i> Shto Kafshe</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('transaction', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-chart-line"></i> Transactions History</a>
+                    <a class="nav-link" href="{{route('transaction', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-chart-line"></i> Historiku i Transaksioneve</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  style="color: white; line-height: 1; margin-right: 1rem;" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                    <a class="nav-link"  style="color: white; line-height: 1; margin-right: 1rem;" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Dil</a>
                 </li>
             </ul>
         </div>
@@ -128,15 +128,15 @@
 
 <div class="content">
     <div class="form-container">
-        <h2>Add Animal</h2>
+        <h2>Shto Kafshe</h2>
         <form method="POST" action="{{ route('addAnimal.store', ['guid_id' => $data['guid_id']]) }}" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <input type="text" class="form-control" name="emer_shkencor" placeholder="Scientific Name" required>
+                <input type="text" class="form-control" name="emer_shkencor" placeholder="Emri Shkencor" required>
             </div>
             <div class="mb-3">
                 <select class="form-control" name="lloji" required>
-                    <option value="" disabled selected>Select Type</option>
+                    <option value="" disabled selected>Zgjidh tipin</option>
                     <option value="lope">Lope</option>
                     <option value="derr">Derr</option>
                     <option value="dhi">Dhi</option>
@@ -145,15 +145,15 @@
                 </select>
             </div>
             <div class="mb-3">
-                <input type="text" class="form-control" name="rraca" placeholder="Breed" required>
+                <input type="text" class="form-control" name="rraca" placeholder="Raca" required>
             </div>
             <div class="mb-3">
                 <input type="file" class="form-control" name="photo" accept="image/*" required>
             </div>
             <div class="mb-3">
-                <textarea class="form-control" name="pershkrim_kafshe" placeholder="Description"></textarea>
+                <textarea class="form-control" name="pershkrim_kafshe" placeholder="Pershkrimi"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Add Animal</button>
+            <button type="submit" class="btn btn-primary">Shto Kafshe</button>
         </form>
     </div>
 </div>

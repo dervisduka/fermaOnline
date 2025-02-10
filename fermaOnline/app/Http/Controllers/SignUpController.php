@@ -65,6 +65,6 @@ class SignUpController extends Controller
 
         Mail::to($request->email)->send(new WelcomeEmail());
         
-        return redirect()->route('login')->with('success', 'Account created successfully');
+        return redirect()->route('login')->with('success', 'Llogaria u krijua me sukses');
     }
 }

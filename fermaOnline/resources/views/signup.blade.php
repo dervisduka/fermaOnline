@@ -138,15 +138,15 @@
             @csrf
             <input type="text" name="username" placeholder="Username" value="{{old('username')}}">
             <input type="email" name="email" placeholder="Email" value="{{old('email')}}">
-            <input type="password" name="password" placeholder="Password" value="{{old('password')}}">
-            <input type="text" name="name" placeholder="Name" value="{{old('name')}}">
-            <input type="text" name="surname" placeholder="Surname" value="{{old('surname')}}">
-            <input type="text" name="phone" placeholder="Phone number" value="{{old('phone')}}">
-            <input type="text" name="address" placeholder="Address" value="{{old('address')}}">
-            <input type="date" name="dob" placeholder="Date Of Birth" value="{{old('dob')}}">
+            <input type="password" name="password" placeholder="Fjalekalim" value="{{old('password')}}">
+            <input type="text" name="name" placeholder="Emri" value="{{old('name')}}">
+            <input type="text" name="surname" placeholder="Mbiemri" value="{{old('surname')}}">
+            <input type="text" name="phone" placeholder="Numri i telefonit" value="{{old('phone')}}">
+            <input type="text" name="address" placeholder="Adresa" value="{{old('address')}}">
+            <input type="date" name="dob" placeholder="Datelindja" value="{{old('dob')}}">
             <input type="submit" value="Sign Up">
         </form>
-        <p>Already have an account? <a href="{{route('login')}}">Login</a></p>
+        <p>Ke llogari? <a href="{{route('login')}}">Hyr</a></p>
     </div>
 </body>
 </html>
