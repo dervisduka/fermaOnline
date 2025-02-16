@@ -167,7 +167,7 @@
                 <div class="brand">FermaOnline</div>
             </div>
             <img src="{{ asset('images/farm.png') }}" alt="Farm" class="farm-img">
-            <p class="slogan">Harvested with Care, Delivered with Love</p>
+            <p class="slogan">E korrur me kujdes, e dorëzuar me dashuri</p>
         </div>
         <div class="col-md-6 col-sm-12 center-content">
             <div class="login-container">
@@ -175,10 +175,10 @@
             <form action="{{route('login-post')}}" method="post" class="login-form">
                 @csrf
                 <input type="text" name="username" placeholder="Username" >
-                <input type="password" name="password" placeholder="Password" >
+                <input type="password" name="password" placeholder="Fjalekalim" >
                 <input type="submit" value="Sign in">
             </form>
-            <p>Don't have an account? <a href="{{route('signup')}}" class="signup-link">Create account</a></p>
+            <p>Nuk ke llogari? <a href="{{route('signup')}}" class="signup-link">Krijo llogari</a></p>
         </div>
         </div>
     </div>

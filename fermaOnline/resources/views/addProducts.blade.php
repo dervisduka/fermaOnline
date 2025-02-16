@@ -46,7 +46,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-            width: 300px;
+            width: 400px;
             margin: auto;
         }
 
@@ -77,7 +77,7 @@
             box-sizing: border-box;
         }
 
-        .profile-container input[type="submit"] {
+        .profile-container form button[type="submit"] {
             width: 100%;
             padding: 10px;
             border: none;
@@ -88,7 +88,7 @@
             font-weight: bold;
         }
 
-        .profile-container input[type="submit"]:hover {
+        .profile-container form button[type="submit"]:hover {
             background-color: #45a049;
         }
         .navbar-nav .nav-item {
@@ -111,27 +111,27 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white; line-height: 1; margin-right: 1rem;">
-                        <i class="fas fa-clipboard-list"></i> Product Management
+                        <i class="fas fa-clipboard-list"></i> Menaxhimi i Produkteve
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                        <li><a class="dropdown-item" href="{{route('mainPage', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-business-time"></i> Stock Management</a></li>
-                        <li><a class="dropdown-item" href="{{route('addProducts', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-plus"></i> Add Products</a></li>
+                        <li><a class="dropdown-item" href="{{route('mainPage', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-business-time"></i> Menaxhimi i Stokut</a></li>
+                        <li><a class="dropdown-item" href="{{route('addProducts', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-plus"></i> Shto Produkte</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white; line-height: 1; margin-right: 1rem;">
-                        <i class="fas fa-store-alt"></i> Animal Management
+                        <i class="fas fa-store-alt"></i> Menaxhimi i Kafsheve
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                        <li><a class="dropdown-item" href="{{route('animal', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-paw"></i>Animal View </a></li>
-                        <li><a class="dropdown-item" href="{{route('addAnimal', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-plus"></i> Add Animals</a></li>
+                        <li><a class="dropdown-item" href="{{route('animal', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-paw"></i> Faqja e Kafsheve</a></li>
+                        <li><a class="dropdown-item" href="{{route('addAnimal', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-plus"></i> Shto Kafshe</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('transaction', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-chart-line"></i> Transactions History</a>
+                    <a class="nav-link" href="{{route('transaction', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-chart-line"></i> Historiku i Transaksioneve</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  style="color: white; line-height: 1; margin-right: 1rem;" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                    <a class="nav-link"  style="color: white; line-height: 1; margin-right: 1rem;" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Dil</a>
                 </li>
             </ul>
         </div>
@@ -143,13 +143,13 @@
 <div class="content">
     <!-- Your content goes here -->
     <div class="profile-container">
-    <h2>Add Product</h2>
-        <form action="{{ route('addProduct', ['guid_id' => $data['guid_id']]) }}" method="POST" enctype="multipart/form-data">
+    <h2>Shto Produkt</h2>
+    <form action="{{ route('addProduct', ['guid_id' => $data['guid_id']]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
-            <label for="kafshe_id" class="form-label">Animal</label>
+            <label for="kafshe_id" class="form-label">Kafsha</label>
             <select class="form-select" id="kafshe_id" name="kafshe_id" onchange="fetchProductTypes(this.value)">
-                <option value="">Select Animal</option>
+                <option value="">Zgjidh kafshen</option>
                 @foreach($data['kafshet'] as $kafshet)
                     <option value="{{ $kafshet->id }}">{{ $kafshet->lloji }}</option>
                 @endforeach
@@ -157,43 +157,39 @@
         </div>
 
         <div class="mb-3">
-            <label for="lloji_id" class="form-label">Product Type</label>
+            <label for="lloji_id" class="form-label">Tipi i Produktit</label>
             <select class="form-select" id="lloji_id" name="lloji_id">
-                <option value="">Select Product Type</option>
+                <option value="">Zgjidh tipin e produktit</option>
             </select>
         </div>
         <div class="mb-3">
-            <label for="sasia" class="form-label">Stock</label>
-            <input type="number" class="form-control" id="sasia" name="sasia" required>
+            <label for="sasia" class="form-label">Stoku</label>
+            <input type="number" class="form-control" id="sasia" name="sasia" >
         </div>
         <div class="mb-3">
-            <label for="cmimi" class="form-label">Price</label>
-            <input type="number" class="form-control" id="cmimi" name="cmimi" step='0.01' required>
+            <label for="cmimi" class="form-label">Çmimi</label>
+            <input type="number" class="form-control" id="cmimi" name="cmimi" step='0.01' >
         </div>
         <div class="mb-3">
-            <label for="foto" class="form-label">Photo</label>
-            <input type="file" class="form-control" id="foto" name="foto" accept="image/*" required>
+            <label for="foto" class="form-label">Foto</label>
+            <input type="file" class="form-control" id="foto" name="foto" accept="image/*" >
         </div>
         <div class="mb-3">
-            <label for="pershkrim_produkti" class="form-label">Product Description</label>
-            <textarea class="form-control" id="pershkrim_produkti" name="pershkrim_produkti" required></textarea>
+            <label for="pershkrim_produkti" class="form-label">Pershkrimi</label>
+            <textarea class="form-control" id="pershkrim_produkti" name="pershkrim_produkti" ></textarea>
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="is_active" name="is_active" value="1">
-            <label class="form-check-label" for="is_active">Is Active</label>
+            <label class="form-check-label" for="is_active">Aktiv</label>
         </div>
-        <button type="submit" class="btn btn-primary">Add Product</button>
+        <button type="submit" class="btn btn-primary">Shto Produkt</button>
     </form>
 
 </div>
 
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+    <div class="alert alert-danger text-center mx-auto" style="max-width: 500px; border-radius: 8px; padding: 10px; font-size: 16px;">
+        <strong>⚠️ Kujdes!</strong> {{ $errors->first() }}
     </div>
 @endif
 
@@ -212,17 +208,17 @@
                 success: function (data) {
                     let productTypeSelect = $('#lloji_id');
                     productTypeSelect.empty();
-                    productTypeSelect.append('<option value="">Select Product Type</option>');
+                    productTypeSelect.append('<option value="">Zgjidh tipin e produktit</option>');
                     $.each(data, function (key, value) {
                         productTypeSelect.append(`<option value="${value.id}">${value.lloji_produktit}</option>`);
                     });
                 },
                 error: function () {
-                    alert('Failed to fetch product types. Please try again.');
+                    alert('Deshtoi ne zgjedhjen e tipit te produktit. Provoni perseri.');
                 }
             });
             } else {
-                $('#lloji_id').empty().append('<option value="">Select Product Type</option>');
+                $('#lloji_id').empty().append('<option value="">Zgjidh tipin e produktit</option>');
             }
         }
     </script>

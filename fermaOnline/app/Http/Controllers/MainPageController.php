@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Perdorues;
 use App\Models\VProduct;
+use App\Models\Produkt;
 use Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
@@ -96,7 +97,6 @@ class MainPageController extends Controller
             'created_at' => now()
         ]);
 
-        // Insert transaction details
         foreach ($request->cart as $item) {
             DetajeTransaksioni::create([
                 'id_produkti' => $item['id'],
@@ -105,6 +105,15 @@ class MainPageController extends Controller
                 'shuma' => $item['price'] * $item['stock'],
                 'created_at' => now()
             ]);
+
+            $produkt = Produkt::find($item['id']);
+            
+            if ($produkt && $produkt->sasia >= $item['stock']) {
+                $produkt->sasia -= $item['stock'];
+                $produkt->save();
+            } else {
+                throw new Exception("Insufficient stock for product ID: " . $item['id']);
+            }
         }
 
         DB::commit();

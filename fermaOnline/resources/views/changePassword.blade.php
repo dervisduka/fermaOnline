@@ -107,21 +107,30 @@
     <div class="sidebar">
         <h2>Menu</h2>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="{{route('showChangePassword', ['guid_id' => Session::get('guid_id')])}}">Change Password</a></li>
-            <li><a href="{{route('logout')}}">Logout</a></li>
+            <li><a href="#">Faqja kryesore</a></li>
+            <li><a href="#">Profili</a></li>
+            <li><a href="{{route('showChangePassword', ['guid_id' => Session::get('guid_id')])}}">Ndrysho Fjalekalimin</a></li>
+            <li><a href="#" onclick="clearCartAndLogout()">Dil</a></li>
         </ul>
     </div>
 
     <div class="profile-container">
     <form action="{{route('changePassword', ['guid_id' => Session::get('guid_id')])}}" method="post">
             @csrf
-            <input type="password" name="oldPassword" placeholder="Old Password" required>
-            <input type="password" name="newPassword" placeholder="New Password" required>
-            <input type="password" name="newPasswordConfirmation" placeholder="New Password" required>
-            <input type="submit" value="Change Password">
-        </form>
+            <input type="password" name="oldPassword" placeholder="Fjalekalimi i vjeter" required>
+            <input type="password" name="newPassword" placeholder="Fjalekalimi i ri" required>
+            <input type="password" name="newPasswordConfirmation" placeholder="Fjalekalimi i ri" required>
+            <input type="submit" value="Ndrysho Fjalekalim">
+    </form>
     </div>
+    <script>
+        function clearCartAndLogout() {
+
+        sessionStorage.removeItem('cart'); 
+        localStorage.removeItem('cart');  
+
+        window.location.href = '/logout'; 
+        }
+    </script>
 </body>
 </html>

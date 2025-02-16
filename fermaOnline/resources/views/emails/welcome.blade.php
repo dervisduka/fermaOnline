@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Thanks for creating </title>
+    <title>Mire se erdhet </title>
 </head>
 <body>
-    <h1>Welcome to Our Site!</h1>
-    <p>Thank you for signing up. We're excited to have you on board.</p>
+    <h1>Mire se erdhet ne faqen tone!</h1>
+    <p>Faleminderit per krijimin e llogarise. Jemi te nderuar qe jeni bere pjese e jona.</p>
 </body>
 </html>

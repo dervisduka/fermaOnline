@@ -48,9 +48,9 @@ class ProfileController extends Controller
     
         if(Hash::check($data['oldPassword'], $user->password) && $data['newPassword'] == $data['newPasswordConfirmation']) {
             Perdorues::where('guid_id', Session::get('guid_id'))->update(['password' => Hash::make($data['newPassword'])]);
-            return redirect()->route('profile', ['guid_id' => Session::get('guid_id')])->with('success', 'Password changed successfully.');
+            return redirect()->route('profile', ['guid_id' => Session::get('guid_id')])->with('success', 'Fjalekalimi u ndryshua me sukses.');
         } else {
-            return redirect()->route('profile', ['guid_id' => Session::get('guid_id')])->with('error', 'Password change failed. Please check your old password and try again.');
+            return redirect()->route('profile', ['guid_id' => Session::get('guid_id')])->with('error', 'Ndryshimi i fjalekalimit ndryshoi. Kontrolloni emailin e vjeter dhe provoni perseri.');
         }
     }    
 }

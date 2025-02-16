@@ -90,23 +90,23 @@
         <div class="collapse navbar-collapse" id="navbarNav" style="padding-left: 0.5rem;">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{route('mainPage', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-home"></i> Home</a>
+                    <a class="nav-link" href="{{route('mainPage', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-home"></i> Faqja kryesore</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('companyDescription', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-info-circle"></i> About</a>
+                    <a class="nav-link" href="{{route('companyDescription', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-info-circle"></i> Rreth</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('animal', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-paw"></i> Animals</a>
+                    <a class="nav-link" href="{{route('animal', ['guid_id' => $data['guid_id']])}}" style="color: white; line-height: 1; margin-right: 1rem;"><i class="fas fa-paw"></i> Kafshet</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white; line-height: 1; margin-right: 1rem;">
-                        <i class="fas fa-user"></i> Profile
+                        <i class="fas fa-user"></i> Profili
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ route('profile', ['guid_id' => $data['guid_id']]) }}"><i class="fas fa-address-card"></i> My Data</a></li>
-                        <li><a class="dropdown-item" href="{{route('transaction', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-chart-line"></i> My Transactions</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-wallet"></i> Add Funds</a></li>
-                        <li><a class="dropdown-item" href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+                        <li><a class="dropdown-item" href="{{ route('profile', ['guid_id' => $data['guid_id']]) }}"><i class="fas fa-address-card"></i> Te dhenat e mia</a></li>
+                        <li><a class="dropdown-item" href="{{route('transaction', ['guid_id' => $data['guid_id']])}}"><i class="fas fa-chart-line"></i> Transaksionet e mia</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#walletModal"><i class="fas fa-wallet"></i> Shto Fonde</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="clearCartAndLogout()"><i class="fas fa-sign-out-alt"></i> Dil</a></li>
                     </ul>
                 </li>
             </ul>
@@ -118,15 +118,79 @@
 
 <div class="content">
     <div class="description-container">
-        <h2>About FermaOnline</h2>
-        <p>Welcome to FermaOnline, your go-to eCommerce platform for farm-fresh products delivered straight to your doorstep. We are passionate about providing our customers with high-quality, organic, and sustainably sourced products from local farms. Our mission is to support local farmers and offer our customers the freshest produce and farm products available.</p>
-        <p>At FermaOnline, we offer a wide variety of products including fresh vegetables, fruits, dairy products, meats, and artisanal goods. Our commitment to quality means that we carefully select our suppliers to ensure that you receive only the best products. Whether you are looking for fresh milk, free-range eggs, or organic vegetables, we have it all.</p>
-        <p>Our easy-to-use online platform allows you to browse and purchase your favorite farm products with just a few clicks. We offer convenient delivery options to fit your schedule, so you can enjoy fresh, delicious food without the hassle. Thank you for choosing FermaOnline as your trusted source for farm-fresh products.</p>
-        <p>We believe in transparency and strive to provide all the information you need to make informed choices about the food you buy. If you have any questions or need assistance, our customer service team is always here to help. Thank you for supporting local farmers and for being a part of the FermaOnline community.</p>
-        <a href="{{ route('downloadCertificate', ['guid_id' => $data['guid_id']]) }}" class="btn-download-certificate">Download Certificate</a>
+        <h2>Rreth FermaOnline</h2>
+        <p>Miresevini ne FermaOnline, platformen tuaj te preferuar e-Commerce per produkte te fresketa ferme, te dorezuara direkt ne shtepine tuaj. Ne jemi te pasionuar per t'u ofruar klienteve tane produkte cilesore, organike dhe te burime te qendrueshme nga fermat lokale. Misioni ynë është të mbështesim fermerët vendas dhe t'u ofrojmë klientëve tanë produktet më të freskëta dhe produktet bujqësore në dispozicion.</p>
+        <p>Në FermaOnline, ne ofrojmë një gamë të gjerë produktesh duke përfshirë perime të freskëta, fruta, produkte qumështi, mish dhe produkte artizanale. Angazhimi ynë ndaj cilësisë do të thotë që ne zgjedhim me kujdes furnizuesit tanë për të siguruar që ju të merrni vetëm produktet më të mira. Pavarësisht nëse jeni duke kërkuar qumësht të freskët, vezë me gamë të lirë ose perime organike, ne i kemi të gjitha.</p>
+        <p>Platforma jonë online e lehtë për t'u përdorur ju lejon të shfletoni dhe blini produktet tuaja të preferuara të fermës me vetëm disa klikime. Ne ofrojmë opsione të përshtatshme shpërndarjeje për t'iu përshtatur orarit tuaj, në mënyrë që të mund të shijoni ushqim të freskët dhe të shijshëm. Faleminderit që zgjodhët FermaOnline si burimin tuaj të besuar për produktet e freskëta të fermës.</p>
+        <p>Ne besojmë në transparencë dhe përpiqemi të ofrojmë të gjithë informacionin që ju nevojitet për të bërë zgjedhje të informuara për ushqimin që blini. Nëse keni ndonjë pyetje ose keni nevojë për ndihmë, ekipi ynë i shërbimit ndaj klientit është gjithmonë këtu për t'ju ndihmuar. Faleminderit për mbështetjen e fermerëve vendas dhe që jeni pjesë e komunitetit FermaOnline.</p>
+        <a href="{{ route('downloadCertificate', ['guid_id' => $data['guid_id']]) }}" class="text-decoration-none btn-download-certificate">Shkarko Certificaten</a>
     </div>
 </div>
 
+            <div class="modal fade" id="walletModal" tabindex="-1" aria-labelledby="walletModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="walletModalLabel">Wallet</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <form action="{{ route('add.to.wallet', ['guid_id' => $data['guid_id']]) }}" method="POST">
+                            @csrf
+                            <!-- Card Image Placeholder -->
+                            <div class="mb-3 text-center">
+                                <img src="{{ asset('images/Visa-Mastercard.png') }}" alt="Karta" class="img-fluid">
+                            </div>
+                            
+                            <!-- Name & Amount -->
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="fullName" class="form-label">Emer Mbiemer</label>
+                                    <input type="text" class="form-control" id="fullName" placeholder="Full Name">
+                                </div>
+                                <div class="col">
+                                    <label for="amount" class="form-label">Shuma</label>
+                                    <input type="text" class="form-control" id="amount" name="amount" placeholder="Amount">
+                                </div>
+                            </div>
+                            
+                            <!-- Card Number -->
+                            <div class="mb-3">
+                                <label for="cardNumber" class="form-label">10 shifrat</label>
+                                <input type="text" class="form-control" id="cardNumber" placeholder="Card Number">
+                            </div>
+
+                            <!-- Expiry Date & CVV -->
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="expiryDate" class="form-label">Expiry Date</label>
+                                    <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY">
+                                </div>
+                                <div class="col">
+                                    <label for="cvv" class="form-label">3 shifrat pas</label>
+                                    <input type="text" class="form-control" id="cvv" placeholder="CVV">
+                                </div>
+                            </div>
+                            
+                            <!-- Transfer Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Transfero</button>
+                            </div>
+                        </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function clearCartAndLogout() {
+
+    sessionStorage.removeItem('cart'); 
+    localStorage.removeItem('cart');  
+
+    window.location.href = '/logout'; 
+    }
+</script>
 </body>
 </html>
