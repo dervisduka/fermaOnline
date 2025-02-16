@@ -16,6 +16,6 @@ class VProduct extends Model
 
     // Add the columns if you want to make them fillable
     protected $fillable = [
-        'lloji_id', 'sasia', 'cmimi', 'foto_path', 'pershkrim_produkti', 'is_active', 'lloji'
+        'lloji_id', 'sasia', 'cmimi', 'foto_path', 'pershkrim_produkti', 'is_active', 'lloji','lloji_produktit'
     ];
 }

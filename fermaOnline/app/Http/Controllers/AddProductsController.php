@@ -34,14 +34,18 @@ class AddProductsController extends Controller
 
     public function addProduct(Request $request, $guid_id)
     {
-        $validatedData = $request->validate([
-            'lloji_id' => 'required|exists:llojprodukti,id',
-            'sasia' => 'required|integer',
-            'cmimi' => 'required|numeric',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'pershkrim_produkti' => 'required|string',
-            'is_active' => 'boolean',
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'lloji_id' => 'required|exists:llojprodukti,id',
+                'sasia' => 'required|integer',
+                'cmimi' => 'required|numeric',
+                'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'pershkrim_produkti' => 'required|string',
+                'is_active' => 'boolean',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()->withErrors(['error' => 'Të gjitha fushat janë të detyrueshme!'])->withInput();
+        }
 
            // Handle file upload
           if ($request->hasFile('foto')) {

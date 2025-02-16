@@ -132,10 +132,10 @@
         <form method="POST" action="{{ route('addAnimal.store', ['guid_id' => $data['guid_id']]) }}" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <input type="text" class="form-control" name="emer_shkencor" placeholder="Emri Shkencor" required>
+                <input type="text" class="form-control" name="emer_shkencor" placeholder="Emri Shkencor" >
             </div>
             <div class="mb-3">
-                <select class="form-control" name="lloji" required>
+                <select class="form-control" name="lloji" >
                     <option value="" disabled selected>Zgjidh tipin</option>
                     <option value="lope">Lope</option>
                     <option value="derr">Derr</option>
@@ -145,10 +145,10 @@
                 </select>
             </div>
             <div class="mb-3">
-                <input type="text" class="form-control" name="rraca" placeholder="Raca" required>
+                <input type="text" class="form-control" name="rraca" placeholder="Raca" >
             </div>
             <div class="mb-3">
-                <input type="file" class="form-control" name="photo" accept="image/*" required>
+                <input type="file" class="form-control" name="photo" accept="image/*" >
             </div>
             <div class="mb-3">
                 <textarea class="form-control" name="pershkrim_kafshe" placeholder="Pershkrimi"></textarea>
@@ -157,6 +157,12 @@
         </form>
     </div>
 </div>
+
+@if ($errors->any())
+    <div class="alert alert-danger text-center mx-auto" style="max-width: 500px; border-radius: 8px; padding: 10px; font-size: 16px;">
+        <strong>⚠️ Kujdes!</strong> {{ $errors->first() }}
+    </div>
+@endif
 
 @endif
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

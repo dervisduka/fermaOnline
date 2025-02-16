@@ -173,25 +173,64 @@
         @foreach($data['produkte'] as $produkt)
             @if($produkt->is_active)
             <div class="col-md-4">
-                <div class="card card-custom mb-4 shadow-sm">
-                    <img src="{{ asset($produkt->foto_path) }}" class="card-img-top mx-auto d-block product-image" alt="Imazh Produkti" style="width:11em; height:13em; margin-top:2em;object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">{{ $produkt->pershkrim_produkti }}</h5>
-                        <span class="d-flex justify-content-center gap-5">
-                            <span class="card-text">Çmimi: ${{ $produkt->cmimi }}</span>
-                            <span class="card-text">Lloji: {{ $produkt->lloji }}</span>
-                        </span>
-                        <p class="d-none product-id">{{ $produkt->id }}</p> <!-- Hidden product ID -->
-                        <div class="d-flex justify-content-between align-items-center row">
-                            <div class="col-md-10"></div>
-                            <div class="btn-group col-md-2">
-                                <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart">Shto</button>
-                            </div>
+                <div class="card card-custom mb-4 shadow-sm h-100">
+                    <img src="{{ asset($produkt->foto_path) }}" class="card-img-top mx-auto d-block product-image" alt="Imazh Produkti" 
+                        style="width:11em; height:11em; margin-top:2em; object-fit: cover;">
+                    <div class="card-body d-flex flex-column justify-content-between text-center" style="min-height: 200px;">
+                        <h5 class="card-title">{{ $produkt->lloji_produktit }}</h5>
+                        <div>
+                            <span class="d-flex justify-content-center gap-5">
+                                <span class="card-text">Çmimi: ${{ $produkt->cmimi }}</span>
+                                <span class="card-text">Lloji: {{ $produkt->lloji }}</span>
+                            </span>
+                            <p class="d-none product-id">{{ $produkt->id }}</p> <!-- Hidden product ID -->
+                        </div>
+
+                        <!-- Button container with equal width -->
+                        <div class="mt-3 d-flex gap-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary flex-fill" data-bs-toggle="modal" 
+                                data-bs-target="#productModal{{ $produkt->id }}">
+                                Meso Me Shume
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary flex-fill add-to-cart">
+                                Shto
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
+
+
             @endif
+
+
+                                <!-- Modal -->
+        <div class="modal fade" id="productModal{{ $produkt->id }}" tabindex="-1" aria-labelledby="productModalLabel{{ $produkt->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="animalModalLabel{{ $produkt->id }}">Product Information</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <h5 style="margin-bottom:1em;">Produkti: {{ $produkt->lloji_produktit }}</h5>
+                        <div class="row">
+                            <div class="col text-left">
+                                <h6>Cmimi: {{ $produkt->cmimi }}</h6>
+                            </div>
+                            <div class="col text-right">
+                                <h6>Kafsha Prejardhese: {{ $produkt->lloji }}</h6>
+                            </div>
+                        </div>
+                        <img src="{{ asset($produkt->foto_path) }}" class="img-fluid" alt="{{ $produkt->lloji }}" style="max-width: 100%; height: 30em;">
+                        <p>{{ $produkt->pershkrim_produkti }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         @endforeach
     </div>
 
@@ -251,8 +290,8 @@
             <div class="card mb-4 shadow-sm flex-fill">
                 <img src="{{ asset($produkt->foto_path) }}" class="card-img-top mx-auto d-block" alt="Imazhi i Produktit" style="width:11em; height:13em; margin-top:2em;">
                 <div class="card-body d-flex flex-column">
-                    <h5 class="card-title text-center">{{ $produkt->pershkrim_produkti }}</h5>
-                    <form action="{{ route('updateProduct', ['guid_id' => $data['guid_id'], 'product_id' => $produkt->id]) }}" method="POST">
+                <h5 class="card-title text-center">{{ $produkt->lloji_produktit . '  ' . $produkt->lloji}}</h5>
+                <form action="{{ route('updateProduct', ['guid_id' => $data['guid_id'], 'product_id' => $produkt->id]) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
@@ -511,7 +550,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     <button type="button" class="btn btn-warning btn-sm decrease-stock col-md-1" data-index="${index}" style="opacity:0.9;">
                                         <i class="fas fa-minus"></i>
                                     </button>
-                                    <p class="col-md-2 text-nowrap total-value" style="margin-top: 1em; margin-left:1em">Stoku: $${(item.stock * item.price).toFixed(2)} </p>
+                                    <p class="col-md-2 text-nowrap total-value" style="margin-top: 1em; margin-left:1em">Totali: $${(item.stock * item.price).toFixed(2)} </p>
                                     <button type="button" class="btn btn-danger btn-sm remove-from-cart col-md-1" data-index="${index}" style="margin-left:5em;opacity:0.9;">
                                         <i class="fas fa-trash"></i>
                                     </button>

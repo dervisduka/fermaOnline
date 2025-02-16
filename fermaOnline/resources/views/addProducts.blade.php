@@ -164,19 +164,19 @@
         </div>
         <div class="mb-3">
             <label for="sasia" class="form-label">Stoku</label>
-            <input type="number" class="form-control" id="sasia" name="sasia" required>
+            <input type="number" class="form-control" id="sasia" name="sasia" >
         </div>
         <div class="mb-3">
             <label for="cmimi" class="form-label">Çmimi</label>
-            <input type="number" class="form-control" id="cmimi" name="cmimi" step='0.01' required>
+            <input type="number" class="form-control" id="cmimi" name="cmimi" step='0.01' >
         </div>
         <div class="mb-3">
             <label for="foto" class="form-label">Foto</label>
-            <input type="file" class="form-control" id="foto" name="foto" accept="image/*" required>
+            <input type="file" class="form-control" id="foto" name="foto" accept="image/*" >
         </div>
         <div class="mb-3">
             <label for="pershkrim_produkti" class="form-label">Pershkrimi</label>
-            <textarea class="form-control" id="pershkrim_produkti" name="pershkrim_produkti" required></textarea>
+            <textarea class="form-control" id="pershkrim_produkti" name="pershkrim_produkti" ></textarea>
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="is_active" name="is_active" value="1">
@@ -188,12 +188,8 @@
 </div>
 
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+    <div class="alert alert-danger text-center mx-auto" style="max-width: 500px; border-radius: 8px; padding: 10px; font-size: 16px;">
+        <strong>⚠️ Kujdes!</strong> {{ $errors->first() }}
     </div>
 @endif
 

@@ -28,8 +28,11 @@ class AddAnimalController extends Controller
             'rraca' => 'required|string|max:40',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'pershkrim_kafshe' => 'nullable|string|max:65535',
+        ], [
+            'required' => 'Të gjitha fushat janë të detyrueshme.' // General error message
         ]);
-    
+
+
         // Handle file upload
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
