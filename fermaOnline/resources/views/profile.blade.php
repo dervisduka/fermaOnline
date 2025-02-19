@@ -261,18 +261,18 @@
                             
                             <!-- Card Number -->
                             <div class="mb-3">
-                                <label for="cardNumber" class="form-label">10 shifrat</label>
+                                <label for="cardNumber" class="form-label">12 shifrat</label>
                                 <input type="text" class="form-control" id="cardNumber" placeholder="Card Number">
                             </div>
 
                             <!-- Expiry Date & CVV -->
                             <div class="row mb-3">
                                 <div class="col">
-                                    <label for="expiryDate" class="form-label">Expiry Date</label>
+                                    <label for="expiryDate" class="form-label">Data e Skadimit</label>
                                     <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY">
                                 </div>
                                 <div class="col">
-                                    <label for="cvv" class="form-label">3 shifrat pas</label>
+                                    <label for="cvv" class="form-label">CVV</label>
                                     <input type="text" class="form-control" id="cvv" placeholder="CVV">
                                 </div>
                             </div>
@@ -315,6 +315,60 @@
 
         window.location.href = '/logout'; 
         }
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("form").addEventListener("submit", function (event) {
+            event.preventDefault(); // 
+            
+            let isValid = true;
+
+            const fullName = document.getElementById("fullName").value.trim();
+            if (fullName === "") {
+                alert("Emri dhe Mbiemri nuk duhet të jetë bosh!");
+                isValid = false;
+            }
+
+            const amount = document.getElementById("amount").value.trim();
+            if (!/^\d+(\.\d{1,2})?$/.test(amount) || parseFloat(amount) <= 0) {
+                alert("Shuma duhet të jetë një numër pozitiv!");
+                isValid = false;
+            }
+
+            const cardNumber = document.getElementById("cardNumber").value.trim();
+            if (!/^\d{12}$/.test(cardNumber)) {
+                alert("Numri i kartës duhet të përmbajë saktësisht 12 shifra!");
+                isValid = false;
+            }
+
+            const expiryDate = document.getElementById("expiryDate").value.trim();
+            if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
+                alert("Data e skadimit duhet të jetë në formatin MM/YY!");
+                isValid = false;
+            } else {
+                const [month, year] = expiryDate.split("/").map(Number);
+                const currentDate = new Date();
+                const currentYear = currentDate.getFullYear() % 100;
+                const currentMonth = currentDate.getMonth() + 1; 
+
+                if (year < currentYear || (year === currentYear && month < currentMonth)) {
+                    alert("Data e skadimit duhet të jetë në të ardhmen!");
+                    isValid = false;
+                }
+            }
+
+            const cvv = document.getElementById("cvv").value.trim();
+            if (!/^\d{3,4}$/.test(cvv)) {
+                alert("CVC duhet të përmbajë 3 ose 4 shifra!");
+                isValid = false;
+            }
+
+            if (isValid) {
+                this.submit();
+            }
+        });
+    });
     </script>
 </body>
 </html>
